@@ -1,0 +1,65 @@
+:root {
+    --midnight: #2c3e50;
+    --solid: #0f3ab5;
+    --sky: #00b8c8;
+    --font: "Montserrat", sans-serif;
+}
+
+*,
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.dropdown-toggle::before {
+    display: none !important;
+}
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.preloader {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 99999;
+    background: #fff;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lds-ripple {
+    transition: 0.2s ease-in-out;
+    width: 20rem;
+    height: auto;
+    animation: load 1s ease alternate;
+}
+
+.remove-pre {
+    z-index: -99999;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+}
+
+@keyframes load {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
