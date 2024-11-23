@@ -8,6 +8,12 @@
     <title>@yield('title') | InterMind</title>
 
 
+
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
     <link rel="icon" href="{{ asset('property-img/head.png') }}" type="image/x-icon" height="200" width="200">
 
     <!-- Fonts -->
@@ -44,10 +50,12 @@
     <script src="{{ asset('dashboard-assets') }}/assets/js/config.js"></script>
 
     <link rel="stylesheet" href="{{ asset('css/guru/nav.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/guru/custom.css') }}" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.min.js"
+        integrity="sha512-Atu8sttM7mNNMon28+GHxLdz4Xo2APm1WVHwiLW9gW4bmHpHc/E2IbXrj98SmefTmbqbUTOztKl5PDPiu0LD/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    {{-- @yield('link')  --}}
+    @yield('link')
 
     {{-- </head> --}}
 
@@ -56,7 +64,7 @@
     @yield('content')
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('dashboard-assets') }}/assets/vendor/libs/jquery/jquery.js"></script>
@@ -78,6 +86,13 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet"
+        integrity="sha384-u3h5SFn5baVOWbh8UkOrAaLXttgSF0vXI15ODtCSxl0v/VKivnCN6iHCcvlyTL7L" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"
+        integrity="sha384-JdRP5GRWP6APhoVS1OM/pOKMWe7q9q8hpl+J2nhCfVJKoS+yzGtELC5REIYKrymn" crossorigin="anonymous">
+    </script>
+
     @yield('internal')
 
 </body>

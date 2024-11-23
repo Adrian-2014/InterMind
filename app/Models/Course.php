@@ -14,4 +14,8 @@ class Course extends Model
     public function teacher() {
         return $this->blongsTo(Teacher::class);
     }
+
+    public function type() {
+        return $this->belongsTo(Type_course::class);
+    }
 }

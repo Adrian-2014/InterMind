@@ -99,7 +99,7 @@
 
             <div class="item">
                 <div class="course-type">
-                    Sains
+                    Sains Fiksi Missionary god
                 </div>
                 <div class="main-item">
                     <div class="img-content">
@@ -234,53 +234,217 @@
     </section>
 
     <section class="about">
-        <div class="feats">
-            {{-- <div class="top-head">
-                PRESTASI KAMI
-            </div> --}}
-            <div class="item-feats">
-                <div class="list">
-                    <div class="for-icon">
-                        <img src="{{ asset('icon/success.png') }}">
+
+        <div class="about-first">
+            <div class="left">
+                <div class="top">
+                    <div class="context">
+                        Segalanya Tentang Kami
                     </div>
-                    <div class="for-txt">
-                        Lebih dari 2500 Pelajar Berprestasi.
+                    <div class="title">
+                        Upgrade kemampuanmu, Latih Skillmu, dan Lampaui semua <span>Batasanmu</span>.
                     </div>
                 </div>
-                <div class="list">
-                    <div class="for-icon">
-                        <img src="{{ asset('icon/community.png') }}">
+                <div class="bottom">
+
+                    <div class="splide" role="group" id="splide-comment">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <div class="star">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="comment">
+                                        <div class="for-quote">
+                                            <img src="{{ asset('property-img/quote.png') }}">
+                                        </div>
+                                        <div class="for-message">
+                                            Website e-learning ini benar-benar luar biasa! Materinya lengkap, mudah
+                                            dipahami, dan tersusun dengan rapi. Video pembelajaran dan kuis interaktifnya
+                                            membantu saya untuk memahami materi lebih dalam. Ditambah lagi, tampilannya yang
+                                            sederhana dan navigasinya yang mudah membuat pengalaman belajar jadi
+                                            menyenangkan. Terima kasih untuk semua tim yang sudah membuat platform
+                                            ini sangat membantu dalam meningkatkan pemahaman saya.
+                                        </div>
+                                    </div>
+                                    <div class="user-data">
+                                        <div class="for-prof">
+                                            <img src="{{ asset('property-img/profile.jpg') }}">
+                                        </div>
+                                        <div class="data">
+                                            <div class="name">
+                                                John Doe
+                                            </div>
+                                            <div class="role">
+                                                Pelajar
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tanggal">
+                                        <span>Diposting pada </span> 17 November 2006
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="for-txt">
-                        Komunitas & Relasi.
+
+                </div>
+            </div>
+            <div class="right">
+                <div class="contain st">
+                    <div class="for-isi">
+                        <div class="icon">
+                            <img src="{{ asset('property-img/user.png') }}">
+                        </div>
+                        <div class="text">
+                            14K+
+                        </div>
+                        <div class="detail">
+                            User aktif Pertahun
+                        </div>
+                    </div>
+
+                    <div class="for-img">
+                        <img src="{{ asset('property-img/model about 1.jpeg') }}">
                     </div>
                 </div>
-                <div class="list">
-                    <div class="for-icon">
-                        <img src="{{ asset('icon/award.png') }}">
+                <div class="contain nd">
+                    <div class="for-img">
+                        <img src="{{ asset('property-img/model about 2.jpeg') }}">
                     </div>
-                    <div class="for-txt">
-                        Penghargaan tingkat Internasional.
-                    </div>
-                </div>
-                <div class="list">
-                    <div class="for-icon">
-                        <img src="{{ asset('icon/relationship.png') }}">
-                    </div>
-                    <div class="for-txt">
-                        kerjasama & Kemitraan.
-                    </div>
-                </div>
-                <div class="list">
-                    <div class="for-icon">
-                        <img src="{{ asset('icon/atom.png') }}">
-                    </div>
-                    <div class="for-txt">
-                        Berbagai macam Disiplin Ilmu.
+
+                    <div class="for-isi">
+                        <div class="icon">
+                            <img src="{{ asset('property-img/book.png') }}">
+                        </div>
+                        <div class="text">
+                            30+
+                        </div>
+                        <div class="detail">
+                            Course dengan berbagai Tema.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="about-sec">
+            {{-- <div class="main-title">
+                Selalu menyediakan yang Terbaik untukmu
+            </div> --}}
+            <div class="sec-list">
+                <div class="item andalan">
+                    <div class="for-icon">
+                        <i class='bx bx-bookmarks'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Andalan Pelajar
+                        </div>
+                        <div class="desc">
+                            Pilihan utama pelajar untuk meraih potensi terbaik mereka di seluruh dunia.
+                        </div>
+                    </div>
+                </div>
+                <div class="item komunitas">
+                    <div class="for-icon">
+                        <i class='bx bx-network-chart'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Relasi & Network
+                        </div>
+                        <div class="desc">
+                            Komunitas antar pelajar dari berbagai bidang yang Interaktif & Supportif.
+                        </div>
+                    </div>
+                </div>
+                <div class="item prestasi">
+                    <div class="for-icon">
+                        <i class='bx bx-medal'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Prestasi
+                        </div>
+                        <div class="desc">
+                            Website E-Learning Terbesar di Seluruh dunia.
+                        </div>
+                    </div>
+                </div>
+                <div class="item dunia">
+                    <div class="for-icon">
+                        <i class='bx bx-world'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Akses Global
+                        </div>
+                        <div class="desc">
+                            Membuka peluang bagi pelajar di seluruh dunia untuk mengembangkan pengetahuan
+                            mereka.
+                        </div>
+                    </div>
+                </div>
+                <div class="item rating">
+                    <div class="for-icon">
+                        <i class='bx bx-star'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Rating
+                        </div>
+                        <div class="desc">
+                            Mendapat Ulasan positif dari ratusan Guru & Pelajar.
+                        </div>
+                    </div>
+                </div>
+                <div class="item target">
+                    <div class="for-icon">
+                        <i class='bx bx-target-lock'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Tujuan Terarah
+                        </div>
+                        <div class="desc">
+                            Membantu setiap pelajar mencapai tujuan dan target mereka.
+                        </div>
+                    </div>
+                </div>
+                <div class="item time">
+                    <div class="for-icon">
+                        <i class='bx bx-timer'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Efisiensi Waktu
+                        </div>
+                        <div class="desc">
+                            Membantumu mempelajari sesuatu dengan lebih cepat dengan berbagai metode unik.
+                        </div>
+                    </div>
+                </div>
+                <div class="item variasi">
+                    <div class="for-icon">
+                        <i class='bx bx-collection'></i>
+                    </div>
+                    <div class="main">
+                        <div class="title">
+                            Variasi
+                        </div>
+                        <div class="desc">
+                            Berbagai Course dengan metode belajar yang beragam.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- Footer -->
@@ -292,12 +456,22 @@
 @section('internal')
 
     <script>
+        var splide = new Splide('#splide-comment', {
+            type: 'loop',
+            arrows: false,
+        });
+
+        splide.mount();
+    </script>
+    <script>
         document.getElementById('reg-pelajar').addEventListener('click', function() {
             document.getElementById('reg-pelajar').classList.add('active');
             document.getElementById('form-pelajar').classList.add('active');
 
             document.getElementById('reg-guru').classList.remove('active');
             document.getElementById('form-guru').classList.remove('active');
+            document.getElementById('imgu-reg').src = "{{ asset('property-img/student-light.png') }}";
+            document.getElementById('imgg-reg').src = "{{ asset('property-img/teacher-dark.png') }}";
 
         });
 
@@ -307,6 +481,8 @@
 
             document.getElementById('reg-pelajar').classList.remove('active');
             document.getElementById('form-pelajar').classList.remove('active');
+            document.getElementById('imgu-reg').src = "{{ asset('property-img/student-dark.png') }}";
+            document.getElementById('imgg-reg').src = "{{ asset('property-img/teacher-light.png') }}";
 
         });
     </script>
@@ -317,6 +493,8 @@
 
             document.getElementById('guru').classList.remove('active');
             document.getElementById('formulir-guru').classList.remove('active');
+            document.getElementById('imgu-login').src = "{{ asset('property-img/student-light.png') }}";
+            document.getElementById('imgg-login').src = "{{ asset('property-img/teacher-dark.png') }}";
 
         });
 
@@ -326,6 +504,8 @@
 
             document.getElementById('pelajar').classList.remove('active');
             document.getElementById('formulir-pelajar').classList.remove('active');
+            document.getElementById('imgu-login').src = "{{ asset('property-img/student-dark.png') }}";
+            document.getElementById('imgg-login').src = "{{ asset('property-img/teacher-light.png') }}";
 
         });
     </script>
@@ -350,7 +530,6 @@
             });
         });
     </script>
-
     @if (session('success'))
         <script>
             document.addEventListener("DOMContentLoaded", function() {

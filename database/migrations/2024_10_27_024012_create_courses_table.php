@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            // $table->string('');
+            $table->string('name')->unique();
+            $table->foreignId('type_id')->constrained('type_courses')->onDelete('cascade');
+            $table->string('deskripsi');
+            $table->string('gambar');
+            $table->string('rating')->nullable();
+            $table->foreignId('teacher_id')->constrained('teachers')->onDelete('cascade');
             $table->timestamps();
         });
     }

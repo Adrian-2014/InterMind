@@ -74,6 +74,7 @@ class authControll extends Controller
         }
        
     }
+    
     public function daftarGuru(Request $request) {
         $request->validate([
             'email' => 'required',

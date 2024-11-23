@@ -92,10 +92,12 @@
                     width: 2.7rem;
                     border-radius: 50%;
                     overflow: hidden;
+                    position: relative;
                     img {
-                        width: 2.7rem;
-                        min-height: 2.7rem;
-                        height: auto;
+                        width: 100%;
+                        object-fit: cover;
+                        height: 100%;
+                        object-position: top left;
                     }
                 }
             }
@@ -244,7 +246,7 @@ footer {
     }
 }
 
-.modal.show {
+.modal {
     .modal-dialog {
         .modal-content {
             border-radius: 1rem;
@@ -1026,13 +1028,15 @@ footer {
                     height: 7rem;
                     width: 7rem;
                     overflow: hidden;
+                    position: relative;
                     border-radius: 50%;
                     border: 2.5px solid rgb(195, 195, 195);
                     box-shadow: 0px 0px 30px rgba(0, 119, 255, 0.1);
                     img {
-                        height: auto;
-                        min-height: 7rem;
-                        width: 7rem;
+                        height: 100%;
+                        object-fit: cover;
+                        width: 100%;
+                        object-position: top left;
                     }
                 }
 

@@ -27,26 +27,8 @@
                 </div>
                 <div class="profils">
                     <div class="for-img">
-
                         @if (!is_null(Auth::guard('web')->user()->profil))
-                            <img src="{{ asset('upload-profil/' . Auth::guard('web')->user()->profil) }}">
-                        @else
-                            <img src="{{ asset('property-img/profile.jpg') }}">
-                        @endif
-
-                    </div>
-                </div>
-            </div>
-        @elseif(Auth::guard('teacher')->check())
-            <div class="profil">
-                <div class="for-name">
-                    {{ Auth::guard('web')->user()->name }}
-                </div>
-                <div class="profils">
-                    <div class="for-img">
-
-                        @if (!is_null(Auth::guard('web')->profil))
-                            <img src="{{ asset('property-img/profile.jpg') }}">
+                            <img src="{{ asset('Uploads/for-profil/' . Auth::guard('web')->user()->profil) }}">
                         @else
                             <img src="{{ asset('property-img/profile.jpg') }}">
                         @endif
@@ -146,9 +128,8 @@
                                     <div class="logo">
                                         <i class="bi bi-at"></i>
                                     </div>
-                                    <input type="email" class="form-control" name="email" required
-                                        maxlength="35" value="{{ Auth::guard('web')->user()->email }}"
-                                        placeholder="example@gmail.com">
+                                    <input type="email" class="form-control" name="email" required maxlength="35"
+                                        value="{{ Auth::guard('web')->user()->email }}" placeholder="example@gmail.com">
                                 </div>
                             </div>
                         </div>
@@ -352,7 +333,7 @@
                 <div class="couple-btn">
                     <div class="ele active" id="pelajar">
                         <div class="imgs">
-                            <img src="{{ asset('property-img/student.png') }}">
+                            <img src="{{ asset('property-img/student-light.png') }}" id="imgu-login">
                         </div>
                         <div class="names">
                             Pelajar
@@ -360,7 +341,7 @@
                     </div>
                     <div class="ele" id="guru">
                         <div class="imgs">
-                            <img src="{{ asset('property-img/teacher.png') }}">
+                            <img src="{{ asset('property-img/teacher-dark.png') }}" id="imgg-login">
                         </div>
                         <div class="names">
                             Guru
@@ -487,7 +468,7 @@
                 <div class="couple-btn">
                     <div class="ele active" id="reg-pelajar">
                         <div class="imgs">
-                            <img src="{{ asset('property-img/student.png') }}">
+                            <img src="{{ asset('property-img/student-light.png') }}" id="imgu-reg">
                         </div>
                         <div class="names">
                             Pelajar
@@ -495,7 +476,7 @@
                     </div>
                     <div class="ele" id="reg-guru">
                         <div class="imgs">
-                            <img src="{{ asset('property-img/teacher.png') }}">
+                            <img src="{{ asset('property-img/teacher-dark.png') }}" id="imgg-reg">
                         </div>
                         <div class="names">
                             Guru
@@ -751,7 +732,7 @@
                 <div class="prof-pic">
                     <div class="profil-content">
                         @if (!is_null(Auth::guard('web')->user()->profil))
-                            <img src="{{ asset('upload-profil/' . Auth::guard('web')->user()->profil) }}">
+                            <img src="{{ asset('Uploads/for-profil/' . Auth::guard('web')->user()->profil) }}">
                         @else
                             <img src="{{ asset('property-img/profile.jpg') }}">
                         @endif
