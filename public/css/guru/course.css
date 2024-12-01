@@ -91,7 +91,7 @@ a {
                     .for-img {
                         /* background-color: red; */
                         position: relative;
-                        width: 17.75rem;
+                        width: 100%;
                         aspect-ratio: 16 / 9;
                         border-radius: 0.35rem;
                         overflow: hidden;
@@ -123,37 +123,59 @@ a {
                         }
                     }
 
-                    .for-act {
-                        margin-top: 0.25rem;
-                        padding: 0.5rem 2rem;
+                    .bottom {
                         display: flex;
                         align-items: center;
-                        justify-content: center;
-                        gap: 1.5rem;
+                        justify-content: space-between;
+                        padding: 0.5rem;
 
-                        .act {
-                            line-height: 1;
-                            height: 2rem;
-                            width: 2rem;
-                            border-radius: 0.35rem;
+                        .for-type {
                             display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            cursor: pointer;
-                            i {
-                                color: white;
-                                font-size: 1rem;
+                            flex-direction: column;
+                            line-height: 1.2;
+
+                            .top {
+                                color: rgba(44, 62, 80, 0.65);
+                                font-size: 0.85rem;
+                            }
+                            .bot {
+                                color: var(--midnight);
+                                font-size: 0.925rem;
+                                font-weight: 600;
                             }
                         }
 
-                        .edit {
-                            background-color: rgba(0, 123, 255, 0.9);
-                        }
-                        .detail {
-                            background-color: rgba(235, 48, 235, 0.9);
-                        }
-                        .hapus {
-                            background-color: rgba(255, 0, 0, 0.9);
+                        .for-act {
+                            margin-top: 0.25rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 1rem;
+
+                            .act {
+                                line-height: 1;
+                                height: 2rem;
+                                width: 2rem;
+                                border-radius: 0.35rem;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                                i {
+                                    color: white;
+                                    font-size: 1rem;
+                                }
+                            }
+
+                            .edit {
+                                background-color: rgba(0, 123, 255, 0.9);
+                            }
+                            .detail {
+                                background-color: rgba(235, 48, 235, 0.9);
+                            }
+                            .hapus {
+                                background-color: rgba(255, 0, 0, 0.9);
+                            }
                         }
                     }
                 }
@@ -182,6 +204,20 @@ a {
                     img {
                         height: 2.3rem;
                         width: auto;
+                    }
+                }
+
+                .info {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    line-height: 1.2;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: var(--midnight);
+                    i {
+                        font-size: 1.1rem;
+                        color: var(--midnight);
                     }
                 }
             }

@@ -81,6 +81,10 @@
                     <div class="icon-head">
                         <img src="{{ asset('property-img/logo.png') }}">
                     </div>
+                    <div class="info">
+                        <i class="bi bi-boxes"></i>
+                        TAMBAH TIPE COURSE
+                    </div>
                 </div>
                 <div class="modal-body">
                     <form action="/add-type-course" enctype="multipart/form-data" method="post">
@@ -93,7 +97,7 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Deskripsi</label>
-                                <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="150"></textarea>
+                                <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="450"></textarea>
                             </div>
                             <div class="col-12
                                     upload">
@@ -101,7 +105,7 @@
                                 <div class="row">
                                     <div class="col-2"></div>
                                     <div class="col-8"><input type="file" class="filepond tb-file" name="imagess"
-                                            accept="image/png, image/jpeg, image/png">
+                                            accept="image/png, image/jpeg, image/png" required>
                                         <input type="file" name="image" id="hiddenImageInput" hidden>
                                     </div>
                                     <div class="col-2"></div>
@@ -127,14 +131,18 @@
     {{-- Modal Tambah Course Type --}}
 
 
-    @foreach ($types as $loops)
+    @foreach ($types as $modal)
         {{-- Modal Edit Course Type --}}
-        <div class="modal fade edit" id="edit-type-{{ $loops->id }}" tabindex="-1">
+        <div class="modal fade edit" id="edit-type-{{ $modal->id }}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="icon-head">
                             <img src="{{ asset('property-img/logo.png') }}">
+                        </div>
+                        <div class="info">
+                            <i class="bi bi-boxes"></i>
+                            EDIT DATA
                         </div>
                     </div>
                     <div class="modal-body">
@@ -143,14 +151,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label class="form-label">Nama Tipe</label>
-                                    <input type="hidden" name="id" value="{{ $loops->id }}">
+                                    <input type="hidden" name="id" value="{{ $modal->id }}">
                                     <input type="text" name="name" class="form-control" required
                                         placeholder="Astronomi, Filsafat, etc.." maxlength="25"
-                                        value="{{ $loops->name_type }}">
+                                        value="{{ $modal->name_type }}">
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Deskripsi</label>
-                                    <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="150">{{ $loops->deskripsi }}</textarea>
+                                    <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="450">{{ $modal->deskripsi }}</textarea>
                                 </div>
                                 <div class="col-12
                                     upload">
@@ -158,10 +166,10 @@
                                     <div class="row">
                                         <div class="col-2"></div>
                                         <div class="col-8"><input type="file" class="filepond"
-                                                data-id="{{ $loops->id }}" name="imagess"
+                                                data-id="{{ $modal->id }}" name="imagess"
                                                 accept="image/png, image/jpeg, image/png">
                                             <input type="file" name="image"
-                                                id="hiddenImageInput-{{ $loops->id }}" hidden>
+                                                id="hiddenImageInput-{{ $modal->id }}" hidden>
                                         </div>
                                         <div class="col-2"></div>
                                     </div>
@@ -174,7 +182,7 @@
                                         PERBARUI
                                     </div>
                                     <div class="for-icon-show">
-                                        <i class="bi bi-plus-lg"></i>
+                                        <i class="bi bi-pencil-square"></i>
                                     </div>
                                 </button>
                             </div>

@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 @endsection
 
+{{-- for navbar --}}
+@section('home', '#')
+@section('about', '#about-link')
+{{-- for navbar --}}
+
 @section('content')
     <!-- Navbar -->
     @include('layout.navbar')
@@ -97,141 +102,59 @@
     <section class="course">
         <div class="rows">
 
-            <div class="item">
-                <div class="course-type">
-                    Sains Fiksi Missionary god
-                </div>
-                <div class="main-item">
-                    <div class="img-content">
-                        <img src="{{ asset('property-img/astronomy-example.jpg') }}">
+            @foreach ($courseList as $course)
+                <div class="item">
+                    <div class="course-type">
+                        {{ $course->type->name_type }}
+                    </div>
+                    <div class="main-item">
+                        <div class="img-content">
+                            <img src="{{ asset('Uploads/for-course/' . $course->gambar) }}">
 
-                        <div class="secret">
-                            <div class="publisher">
-                                <span>Published by: </span>
-                                Adrian Kurniawan
-                            </div>
-                            <div class="tahun">
-                                2024
-                            </div>
-                        </div>
-                    </div>
-                    <div class="core">
-                        <div class="first">
-                            <div class="judul">
-                                Ekosistem Tata Surya
-                            </div>
-                            <div class="descript">
-                                Mempelajari berbgai ekosistem dari planet planet di tata surya.
+                            <div class="secret">
+                                <div class="publisher">
+                                    <span>Published by: </span>
+                                    {{ $course->teacher->name }}
+                                </div>
+                                <div class="tahun">
+                                    {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('Y') }}
+                                </div>
                             </div>
                         </div>
-                        <div class="lihat">
-                            Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="course-type">
-                    PERSONALITY
-                </div>
-                <div class="main-item">
-                    <div class="img-content">
-                        <img src="{{ asset('property-img/i hate people.jpeg') }}">
-
-                        <div class="secret">
-                            <div class="publisher">
-                                <span>Published by: </span>
-                                Rudi escobar
+                        <div class="core">
+                            <div class="first">
+                                <div class="judul">
+                                    {{ $course->name }}
+                                </div>
+                                <div class="descript">
+                                    {{ Str::limit($course->deskripsi, 75, '...') }}
+                                </div>
                             </div>
-                            <div class="tahun">
-                                2024
-                            </div>
-                        </div>
-                    </div>
-                    <div class="core">
-                        <div class="first">
-                            <div class="judul">
-                                Ekosistem Tata Surya
-                            </div>
-                            <div class="descript">
-                                Mempelajari berbgai ekosistem dari planet planet di tata surya.
-                            </div>
-                        </div>
-                        <div class="lihat">
-                            Lihat Course <i class="bi bi-chevron-compact-right"></i>
+                            @auth
+                                <form action="/course" method="GET">
+                                    @csrf
+                                    <button class="lihat" type="submit">
+                                        <input type="hidden" name="id" value="{{ $course->id }}">
+                                        Lihat Course <i class="bi bi-chevron-compact-right"></i>
+                                    </button>
+                                </form>
+                            @endauth
+                            @guest
+                                <div class="lihat lihat-course">
+                                    Lihat Course <i class="bi bi-chevron-compact-right"></i>
+                                </div>
+                            @endguest
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="course-type">
-                    MEME
-                </div>
-                <div class="main-item">
-                    <div class="img-content">
-                        <img src="{{ asset('property-img/sesat sesat.jpeg') }}">
-
-                        <div class="secret">
-                            <div class="publisher">
-                                <span>Published by: </span>
-                                Patrick star
-                            </div>
-                            <div class="tahun">
-                                2012
-                            </div>
-                        </div>
-                    </div>
-                    <div class="core">
-                        <div class="first">
-                            <div class="judul">
-                                Mari berbenah sejenak
-                            </div>
-                            <div class="descript">
-                                Stiker patrick gabut
-                            </div>
-                        </div>
-                        <div class="lihat">
-                            Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="course-type">
-                    ARABIC LANGUAGE
-                </div>
-                <div class="main-item">
-                    <div class="img-content">
-                        <img src="{{ asset('property-img/qo iso.jpeg') }}">
-
-                        <div class="secret">
-                            <div class="publisher">
-                                <span>Published by: </span>
-                                zainal abidin
-                            </div>
-                            <div class="tahun">
-                                2022
-                            </div>
-                        </div>
-                    </div>
-                    <div class="core">
-                        <div class="first">
-                            <div class="judul">
-                                LATIHAN BAHASA ARAB
-                            </div>
-                            <div class="descript">
-                                Mempelajari huruf hijaiyah.
-                            </div>
-                        </div>
-                        <div class="lihat">
-                            Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
     </section>
+
+    <div id="about-link">
+
+    </div>
 
     <section class="about">
 
@@ -462,6 +385,27 @@
         });
 
         splide.mount();
+
+        const lihatCourses = document.querySelectorAll('.lihat-course');
+        lihatCourses.forEach((course) => {
+            // Tambahkan event listener untuk setiap elemen
+            course.addEventListener('click', function() {
+                // Tampilkan SweetAlert dengan data dari elemen yang diklik
+                Swal.fire({
+                    title: 'Pemberitahuan!',
+                    text: 'Anda harus login terlebih dahulu untuk mengakses course.',
+                    imageUrl: '{{ asset('property-img/login.png') }}',
+                    imageWidth: 250,
+                    imageHeight: 200,
+                    imageAlt: 'Gambar Course',
+                    showConfirmButton: false,
+
+                    customClass: {
+                        popup: 'alert-login', // Tambahkan kelas khusus
+                    },
+                });
+            });
+        });
     </script>
     <script>
         document.getElementById('reg-pelajar').addEventListener('click', function() {
@@ -557,5 +501,6 @@
             });
         </script>
     @endif
+
 
 @endsection

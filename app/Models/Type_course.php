@@ -10,7 +10,7 @@ class Type_course extends Model
 {
     use HasFactory;
 
-    public function courses() {
+    public function course() {
         return $this->hasMany(Course::class);
     }
 }

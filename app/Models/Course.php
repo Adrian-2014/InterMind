@@ -9,13 +9,33 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $table = 'modules';
+    protected $table = 'courses';
 
     public function teacher() {
-        return $this->blongsTo(Teacher::class);
+        return $this->belongsTo(Teacher::class);
     }
 
-    public function type() {
+    public function type_course() {
         return $this->belongsTo(Type_course::class);
+    }
+
+    public function materi() {
+        return $this->hasMany(Materi::class);
+    }
+    
+    public function quiz() {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function penilaian() {
+        return $this->hasMany(Penilaian::class);
+    }
+    
+    public function ulasan() {
+        return $this->hasMany(Ulasan::class);
+    }
+
+    public function user() {
+        return $this->belongsToMany(User::class, 'follow_courses');
     }
 }

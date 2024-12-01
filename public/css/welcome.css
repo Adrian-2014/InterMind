@@ -314,7 +314,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 2.5rem 2rem;
 
         .item {
             display: flex;
@@ -323,7 +323,7 @@
             width: 21.5rem;
 
             .course-type {
-                padding: 0.25rem 0.75rem;
+                padding: 0.2rem 0.75rem;
                 font-size: 1.2rem;
                 font-weight: 700;
                 color: var(--midnight);
@@ -412,31 +412,38 @@
                     height: 6rem;
 
                     .first {
-                        padding: 0.5rem 0;
+                        padding-top: 0.75rem;
                         color: var(--midnight);
-
                         display: flex;
                         flex-direction: column;
-                        gap: 0.25rem;
+                        gap: 0.2rem;
 
                         .judul {
                             line-height: 1.15;
-                            font-size: 1.2rem;
+                            font-size: 1.05rem;
                             font-weight: 600;
                         }
 
                         .descript {
                             line-height: 1.1;
                             font-size: 0.85rem;
+                            height: 2rem;
                         }
                     }
 
                     .lihat {
-                        color: #0da9d4;
+                        border: none;
+                        background-color: transparent;
+                        color: rgba(44, 62, 80, 0.9);
                         font-size: 0.95rem;
                         font-weight: 600;
                         text-transform: uppercase;
                         cursor: pointer;
+                        line-height: 1.2;
+                        transition: 0.15s ease;
+                    }
+                    .lihat:hover {
+                        color: #00e3f8;
                     }
                 }
             }
@@ -793,3 +800,23 @@
         }
     }
 }
+
+/* For Alert */
+
+.alert-login {
+    .swal2-title {
+        font-size: 1.3rem;
+        line-height: 1.2 !important;
+        color: rgba(0, 89, 255, 0.9);
+    }
+
+    .swal2-html-container {
+        line-height: 1.1 !important;
+        font-size: 1rem;
+        font-style: italic;
+        padding-top: 0.5rem !important;
+        color: rgba(0, 89, 255, 0.8);
+    }
+}
+
+/* For Alert */

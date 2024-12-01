@@ -5,18 +5,35 @@
 
         </a>
         <div class="nav-navigation">
-            <div class="link">
-                <a href="">Home</a>
+            <div class="link link-target">
+                <a href="@yield('home')">Home</a>
             </div>
-            <div class="link">
-                <a href="">Courses</a>
+            <div class="link link-target">
+                <a href="@yield('about')">About</a>
             </div>
-            <div class="link">
-                <a href="">About</a>
+
+            <div class="link myDropdown" id="my-dropdown">
+                <a class="dropdownTrigger" id="dropdown-trigger">Courses</a>
+                <div class="dropdownMenu" id="dropdown-menu">
+                    <div class="direction">
+
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="wrap">
+                            @foreach ($type_course as $item)
+                                <div class="item">
+                                    <div class="for-icon">
+                                        <img src="{{ asset('Uploads/for-course_type/' . $item->gambar) }}">
+                                    </div>
+                                    <div class="for-text">
+                                        {{ $item->name_type }}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{-- <div class="link help">
-                <a href="">Help</a>
-            </div> --}}
         </div>
 
         @if (Auth::guard('web')->check())
@@ -128,8 +145,9 @@
                                     <div class="logo">
                                         <i class="bi bi-at"></i>
                                     </div>
-                                    <input type="email" class="form-control" name="email" required maxlength="35"
-                                        value="{{ Auth::guard('web')->user()->email }}" placeholder="example@gmail.com">
+                                    <input type="email" class="form-control" name="email" required
+                                        maxlength="35" value="{{ Auth::guard('web')->user()->email }}"
+                                        placeholder="example@gmail.com">
                                 </div>
                             </div>
                         </div>

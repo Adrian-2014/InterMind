@@ -37,35 +37,46 @@
                                 </div>
                                 {{-- For Loop --}}
 
-                                @for ($i = 0; $i < 10; $i++)
+                                @foreach ($myCourse as $item)
                                     <div class="col-3">
                                         <div class="item">
                                             <div class="for-img">
-                                                <img src="{{ asset('property-img/astronomy-example.jpg') }}">
+                                                <img src="{{ asset('Uploads/for-course/' . $item->gambar) }}">
                                             </div>
                                             <div class="for-detail">
                                                 <div class="name">
-                                                    Belajar Bahasa Arab Lancar
+                                                    {{ Str::limit($item->name, 30, '...') }}
                                                 </div>
                                                 <div class="desc">
-                                                    Menghafal huruf huruf Hijaiyah arab beserta harakatnya.
+                                                    {{ Str::limit($item->deskripsi, 70, '...') }}
                                                 </div>
                                             </div>
 
-                                            <div class="for-act">
-                                                <div class="act edit">
-                                                    <i class="bi bi-pencil-square"></i>
+                                            <div class="bottom">
+                                                <div class="for-type">
+                                                    <div class="top">
+                                                        Type:
+                                                    </div>
+                                                    <div class="bot">
+                                                        {{ $item->type->name_type }}
+                                                    </div>
                                                 </div>
-                                                <div class="act detail">
-                                                    <i class="bi bi-grid-fill"></i>
-                                                </div>
-                                                <div class="act hapus">
-                                                    <i class="bi bi-trash3"></i>
+                                                <div class="for-act">
+                                                    <div class="act edit" data-bs-target="#edit-course-{{ $item->id }}"
+                                                        data-bs-toggle="modal">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </div>
+                                                    <div class="act detail">
+                                                        <i class="bi bi-grid-fill"></i>
+                                                    </div>
+                                                    <div class="act hapus" data-id="{{ $item->id }}">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endfor
+                                @endforeach
                                 {{-- For Loop --}}
 
                             </div>
@@ -80,7 +91,6 @@
     </div>
 
     {{-- Modal Tambah Course --}}
-
     <div class="modal fade tambah" id="add-course" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -88,9 +98,15 @@
                     <div class="icon-head">
                         <img src="{{ asset('property-img/logo.png') }}">
                     </div>
+
+                    <div class="info">
+                        <i class="bi bi-boxes"></i>
+                        TAMBAH COURSE
+                    </div>
                 </div>
                 <div class="modal-body">
-                    <form action="/" enctype="multipart/form-data" method="post">
+                    <form action="/add-course" enctype="multipart/form-data" method="post">
+                        @csrf
                         <div class="row damn">
                             <div class="col-6 photo">
                                 <div class="row">
@@ -107,13 +123,14 @@
                                     <div class="col-12">
                                         <div class="form-label">Nama Course</div>
                                         <input type="text" name="name" class="form-control" required
-                                            placeholder="Belajar Sains..">
+                                            placeholder="Belajar Sains.." maxlength="50">
 
                                     </div>
                                     <div class="col-12 drop">
                                         <label class="form-label">Tipe Course</label>
                                         <div class="special">
-                                            <input type="text" class="form-control" readonly required x-model="tipe">
+                                            <input type="text" class="form-control" readonly required x-model="tipe"
+                                                placeholder="pilih tipe yang sesuai..">
                                             <input type="hidden" class="form-control" name="type_course" x-model="type">
                                             <div class="dropdown">
                                                 <div class=" dropdown-toggle" data-bs-toggle="dropdown">
@@ -138,7 +155,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-label">Deskripsi</div>
-                                        <textarea name="" id="" required placeholder="Belajar sains bagi pemula.."></textarea>
+                                        <textarea name="deskripsi" id="" required placeholder="Belajar sains bagi pemula.." maxlength="150"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -158,8 +175,100 @@
             </div>
         </div>
     </div>
-
     {{-- Modal Tambah Course --}}
+
+    {{-- Modal Edit Course --}}
+    @foreach ($myCourse as $modal)
+        <div class="modal fade edit" id="edit-course-{{ $modal->id }}" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-head">
+                            <img src="{{ asset('property-img/logo.png') }}">
+                        </div>
+
+                        <div class="info">
+                            <i class="bi bi-boxes"></i>
+                            EDIT DATA
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/update-course" enctype="multipart/form-data" method="post">
+                            @csrf
+                            <div class="row damn">
+                                <div class="col-6 photo">
+                                    <div class="row">
+                                        <div class="col-12 upload">
+                                            <label class="form-label">Unggah Gambar</label>
+                                            <input type="hidden" name="id" value="{{ $modal->id }}">
+                                            <input type="file" class="filepond" name="imagess" accept="image/*"
+                                                data-id="{{ $modal->id }}">
+                                            <input type="file" name="image"
+                                                id="hiddenImageInput-{{ $modal->id }}" hidden>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 txt" x-data="{ type: '{{ $modal->type_id }}', tipe: '{{ $modal->type->name_type }}', }">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-label">Nama Course</div>
+                                            <input type="text" name="name" class="form-control" required
+                                                placeholder="Belajar Sains.." maxlength="50"
+                                                value="{{ $modal->name }}">
+                                        </div>
+                                        <div class="col-12 drop">
+                                            <label class="form-label">Tipe Course</label>
+                                            <div class="special">
+                                                <input type="text" class="form-control" readonly required
+                                                    x-model="tipe" placeholder="pilih tipe yang sesuai..">
+                                                <input type="hidden" class="form-control" name="type_course"
+                                                    x-model="type">
+                                                <div class="dropdown">
+                                                    <div class=" dropdown-toggle" data-bs-toggle="dropdown">
+                                                        <i class="bi bi-caret-down-fill"></i>
+                                                    </div>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        @foreach ($type_course as $item)
+                                                            <div class="item"
+                                                                @click="type='{{ $item->id }}', tipe='{{ $item->name_type }}' ">
+                                                                <div class="for-icon">
+                                                                    <img
+                                                                        src="{{ asset('Uploads/for-course_type/' . $item->gambar) }}">
+                                                                </div>
+                                                                <div class="for-text">
+                                                                    {{ $item->name_type }}
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-label">Deskripsi</div>
+                                            <textarea name="deskripsi" id="" required placeholder="Belajar sains bagi pemula.." maxlength="150">{{ $modal->deskripsi }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="for-submits">
+                                <button type="submit" class="submits">
+                                    <div class="txt">
+                                        PERBARUI
+                                    </div>
+                                    <div class="for-icon-show">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Modal Edit Course --}}
+
 @endsection
 
 @section('internal')
@@ -238,7 +347,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const deleteButtons = document.querySelectorAll('.act.delete');
+            const deleteButtons = document.querySelectorAll('.act.hapus');
 
             deleteButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -258,7 +367,7 @@
                             // Buat form delete secara dinamis
                             const form = document.createElement('form');
                             form.method = 'POST';
-                            form.action = '/delete-course_type';
+                            form.action = '/delete-course';
 
                             // Tambahkan token CSRF untuk melindungi dari serangan CSRF
                             const csrfToken = document.createElement('input');

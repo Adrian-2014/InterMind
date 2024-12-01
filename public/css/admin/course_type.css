@@ -181,6 +181,20 @@ a {
                         width: auto;
                     }
                 }
+
+                .info {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    line-height: 1.2;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: var(--midnight);
+                    i {
+                        font-size: 1.1rem;
+                        color: var(--midnight);
+                    }
+                }
             }
 
             .modal-body {

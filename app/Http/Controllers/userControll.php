@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
+use App\Models\Type_course;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,22 +14,38 @@ class userControll extends Controller
 {
     public function index() {
 
+        // For Navbar
+        $type_course = Type_course::get();
+        // For Navbar
+        
+        $courseList = Course::inRandomOrder()->get();
+       
+
         if(Auth::check()) {
             $auth = Auth::guard('web')->user();
             $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
         
-            return view('welcome', compact('tanggal_lahir'));
+            return view('welcome', compact('tanggal_lahir', 'courseList', 'type_course'));
         }else {
-            return view('welcome');
+            return view('welcome', compact('courseList', 'type_course'));
         }
+
     }
-    public function guru() {
+
+    public function course(Request $request) {
+
+        // For Navbar
+        $type_course = Type_course::get();
+        $auth = Auth::guard('web')->user();
+        $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
         
-        return view('guru.index');
+        // For Navbar
+
+
+        $course = Course::where('id', $request->id)->first();
+
+        return view('course', compact('course', 'type_course', 'tanggal_lahir'));
     }
-
-
-
 
 
     // EDIT DATA PROFIL

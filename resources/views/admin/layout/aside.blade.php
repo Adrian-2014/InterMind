@@ -20,8 +20,8 @@
 
         <li class="menu-item {{ Request::is('admin-course_type') ? 'active' : '' }}">
             <a href="/admin-course_type" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Course</div>
+                <i class="menu-icon tf-icons bx bx-category-alt"></i>
+                <div data-i18n="Basic">Tipe Course</div>
             </a>
         </li>
     </ul>

@@ -136,6 +136,12 @@ class TypeCourseController extends Controller
         ]);
 
         $type = Type_course::where('id', $request->id)->first();
+
+        $oldImagePath = public_path('Uploads/for-course_type/' . $type->gambar);
+        if (file_exists($oldImagePath)) {
+            unlink($oldImagePath);
+        }
+
         $type->delete();
         return redirect()->back()->with('success', 'Tipe Course Berhasil Hapus!');
     }

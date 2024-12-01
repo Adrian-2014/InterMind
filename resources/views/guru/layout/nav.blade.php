@@ -42,7 +42,7 @@
 <!-- / Navbar -->
 
 
-@if (Auth::guard('web')->check())
+@if (Auth::guard('teacher')->check())
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-profil" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <div class="for-logo">
@@ -81,10 +81,10 @@
                 </div>
                 <div class="prof-general">
                     <div class="pro-name">
-                        {{ Auth::guard('web')->user()->name }}
+                        {{ Auth::guard('teacher')->user()->name }}
                     </div>
                     <div class="pro-email">
-                        {{ Auth::guard('web')->user()->email }}
+                        {{ Auth::guard('teacher')->user()->email }}
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="isi">
                             <div class="isis">
-                                {{ Auth::guard('web')->user()->name }}
+                                {{ Auth::guard('teacher')->user()->name }}
                             </div>
                             <div class="act" data-bs-target="#edit-name" data-bs-toggle="modal">
                                 <i class="bi bi-pencil-square"></i>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="isi">
                             <div class="isis">
-                                {{ Auth::guard('web')->user()->email }}
+                                {{ Auth::guard('teacher')->user()->email }}
                             </div>
                             <div class="act" data-bs-target="#edit-email" data-bs-toggle="modal">
                                 <i class="bi bi-pencil-square"></i>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="isi">
                             <div class="isis let">
-                                {{ Auth::guard('web')->user()->no_telepon }}
+                                {{ Auth::guard('teacher')->user()->no_telepon }}
                             </div>
                             <div class="act" data-bs-target="#edit-notelp" data-bs-toggle="modal">
                                 <i class="bi bi-pencil-square"></i>
@@ -152,7 +152,7 @@
                         </div>
                         <div class="isi">
                             <div class="isis">
-                                {{-- {{ $tanggal_lahir }} --}}
+                                {{ \Carbon\Carbon::parse(Auth::guard('teacher')->user()->tanggal_lahir)->translatedFormat('j F Y') }}
                             </div>
                             <div class="act" data-bs-target="#edit-tl" data-bs-toggle="modal">
                                 <i class="bi bi-pencil-square"></i>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="isi">
                             <div class="isis">
-                                {{ Auth::guard('web')->user()->jenis_kelamin }}
+                                {{ Auth::guard('teacher')->user()->jenis_kelamin }}
                             </div>
                             <div class="act" data-bs-target="#edit-jk" data-bs-toggle="modal">
                                 <i class="bi bi-pencil-square"></i>

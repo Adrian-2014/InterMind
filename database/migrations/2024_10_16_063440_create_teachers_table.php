@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->string('password');
-
             $table->string('profil')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();

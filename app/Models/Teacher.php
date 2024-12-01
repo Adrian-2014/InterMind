@@ -19,7 +19,7 @@ class Teacher extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function courses() {
+    public function course() {
         return $this->hasMany(Course::class);
     }
 }

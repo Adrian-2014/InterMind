@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminControll;
 use App\Http\Controllers\authControll;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TypeCourseController;
 use App\Http\Controllers\userControll;
@@ -36,6 +37,12 @@ Route::post('/editprofil_jk', [userControll::class, 'editJk']);
 Route::post('/editprofil_profil', [userControll::class, 'editProfil']);
 // Editz
 
+// Course
+
+Route::get('/course', [userControll::class, 'course']);
+
+// Course
+
 // USER
 
 
@@ -44,9 +51,17 @@ Route::post('/editprofil_profil', [userControll::class, 'editProfil']);
 
 Route::get('/guru-index', [TeacherController::class, 'index'])->name('guru');
 
-Route::get('/guru-course', [TeacherController::class, 'course']);
-
 Route::post('/upload', [TeacherController::class, 'upload'])->name('upload');
+
+// Course
+
+Route::get('/guru-course', [TeacherController::class, 'course']);
+Route::post('/add-course', [CourseController::class, 'store']);
+Route::post('/update-course', [CourseController::class, 'update']);
+Route::post('/delete-course', [CourseController::class, 'destroy']);
+
+// Course
+
 
 // TEACHER
 
