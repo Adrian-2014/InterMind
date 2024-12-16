@@ -50,9 +50,13 @@ class authControll extends Controller
             'name' => 'required',
             'no_telepon' => 'required',
             'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
+            'jenis_kelamin',
             'password' => 'required',
         ]);
+
+        if(!$request->jenis_kelamin) {
+            return redirect()->back()->with('error', 'Mohon lengkapi data sebelum mengirim');
+        }
 
         $adaUser = User::where('email', $request->email)->first();
 
@@ -81,9 +85,13 @@ class authControll extends Controller
             'name' => 'required',
             'no_telepon' => 'required',
             'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
+            'jenis_kelamin',
             'password' => 'required',
         ]);
+
+        if(!$request->jenis_kelamin) {
+            return redirect()->back()->with('error', 'Mohon lengkapi data sebelum mengirim');
+        }
 
         $adaGuru = Teacher::where('email', $request->email)->first();
 

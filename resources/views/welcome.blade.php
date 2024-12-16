@@ -29,7 +29,7 @@
             </div>
 
             <div class="bottom">
-                <a href="">
+                <a href="#course-link">
                     <div class="start">
                         Temukan Course
                     </div>
@@ -99,57 +99,58 @@
         </div>
     </section>
 
+    <div id="course-link"></div>
+
     <section class="course">
-        <div class="rows">
-
-            @foreach ($courseList as $course)
-                <div class="item">
-                    <div class="course-type">
-                        {{ $course->type->name_type }}
-                    </div>
-                    <div class="main-item">
-                        <div class="img-content">
-                            <img src="{{ asset('Uploads/for-course/' . $course->gambar) }}">
-
-                            <div class="secret">
-                                <div class="publisher">
-                                    <span>Published by: </span>
-                                    {{ $course->teacher->name }}
-                                </div>
-                                <div class="tahun">
-                                    {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('Y') }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="core">
-                            <div class="first">
-                                <div class="judul">
-                                    {{ $course->name }}
-                                </div>
-                                <div class="descript">
-                                    {{ Str::limit($course->deskripsi, 75, '...') }}
-                                </div>
-                            </div>
-                            @auth
-                                <form action="/course" method="GET">
-                                    @csrf
-                                    <button class="lihat" type="submit">
-                                        <input type="hidden" name="id" value="{{ $course->id }}">
-                                        Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                                    </button>
-                                </form>
-                            @endauth
-                            @guest
-                                <div class="lihat lihat-course">
-                                    Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                                </div>
-                            @endguest
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
+        <div class="context">
+            Explore Course
         </div>
+        <div class="title">
+            <div class="rows">
+                @foreach ($courseList as $course)
+                    <div class="item">
+                        <div class="course-type">
+                            {{ $course->type_course->name_type }}
+                        </div>
+                        <div class="main-item">
+                            <div class="img-content">
+                                <img src="{{ asset('Uploads/for-course/' . $course->gambar) }}">
+
+                                <div class="secret">
+                                    <div class="publisher">
+                                        <span>Published by: </span>
+                                        {{ $course->teacher->name }}
+                                    </div>
+                                    <div class="tahun">
+                                        {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('Y') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="core">
+                                <div class="first">
+                                    <div class="judul">
+                                        {{ $course->name }}
+                                    </div>
+                                    <div class="descript">
+                                        {{ Str::limit($course->deskripsi, 75, '...') }}
+                                    </div>
+                                </div>
+                                @auth
+                                    <a href="/course/{{ $course->id }}" class="lihat">
+                                        Lihat Course <i class="bi bi-chevron-compact-right"></i>
+                                    </a>
+                                @endauth
+                                @guest
+                                    <div class="lihat lihat-course">
+                                        Lihat Course <i class="bi bi-chevron-compact-right"></i>
+                                    </div>
+                                @endguest
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
     </section>
 
     <div id="about-link">
@@ -173,44 +174,47 @@
                     <div class="splide" role="group" id="splide-comment">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                <li class="splide__slide">
-                                    <div class="star">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </div>
-                                    <div class="comment">
-                                        <div class="for-quote">
-                                            <img src="{{ asset('property-img/quote.png') }}">
+                                @foreach ($ulasans as $ulasan)
+                                    <li class="splide__slide">
+                                        <div class="star">
+                                            @for ($i = 0; $i < $ulasan->rating; $i++)
+                                                <i class="bi bi-star-fill"></i>
+                                            @endfor
+                                            @for ($i = $ulasan->rating; $i < 5; $i++)
+                                                <i class="bi bi-star"></i>
+                                            @endfor
                                         </div>
-                                        <div class="for-message">
-                                            Website e-learning ini benar-benar luar biasa! Materinya lengkap, mudah
-                                            dipahami, dan tersusun dengan rapi. Video pembelajaran dan kuis interaktifnya
-                                            membantu saya untuk memahami materi lebih dalam. Ditambah lagi, tampilannya yang
-                                            sederhana dan navigasinya yang mudah membuat pengalaman belajar jadi
-                                            menyenangkan. Terima kasih untuk semua tim yang sudah membuat platform
-                                            ini sangat membantu dalam meningkatkan pemahaman saya.
-                                        </div>
-                                    </div>
-                                    <div class="user-data">
-                                        <div class="for-prof">
-                                            <img src="{{ asset('property-img/profile.jpg') }}">
-                                        </div>
-                                        <div class="data">
-                                            <div class="name">
-                                                John Doe
+                                        <div class="comment">
+                                            <div class="for-quote">
+                                                <img src="{{ asset('property-img/quote.png') }}">
                                             </div>
-                                            <div class="role">
-                                                Pelajar
+                                            <div class="for-message">
+                                                {{ $ulasan->ulasan }}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="tanggal">
-                                        <span>Diposting pada </span> 17 November 2006
-                                    </div>
-                                </li>
+                                        <div class="user-data">
+                                            <div class="for-prof">
+                                                @if ($ulasan->user->profil)
+                                                    <img src="{{ asset('Uploads/for-profil/' . $ulasan->user->profil) }}">
+                                                @else
+                                                    <img src="{{ asset('property-img/profile.jpg') }}">
+                                                @endif
+                                            </div>
+                                            <div class="data">
+                                                <div class="name">
+                                                    {{ $ulasan->user->name }}
+                                                </div>
+                                                <div class="role">
+                                                    Pelajar
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tanggal">
+                                            <span>Diposting pada </span>
+                                            {{ \Carbon\Carbon::parse($ulasan->created_at)->translatedFormat('j F Y') }}
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

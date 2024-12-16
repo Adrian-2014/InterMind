@@ -199,7 +199,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            FilePond.registerPlugin(FilePondPluginImagePreview);
+            FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
+
 
             // Menangani semua elemen filepond baik pada form tambah maupun edit
             const filePondElements = document.querySelectorAll('.filepond');
@@ -214,6 +215,8 @@
                     stylePanelAspectRatio: 1 / 1,
                     imagePreviewHeight: 100,
                     imagePreviewUpscale: true,
+                    acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
+                    allowFileTypeValidation: true,
                     labelIdle: `
                 <div class="labels">
                     <div class="for-icon">

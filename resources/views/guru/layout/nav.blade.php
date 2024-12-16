@@ -54,7 +54,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <form action="logout" method="post">
+                        <form action="/logout" method="post">
                             @csrf
                             <button type="submit">
                                 <i class="bi bi-power"></i>

@@ -16,7 +16,7 @@ class Course extends Model
     }
 
     public function type_course() {
-        return $this->belongsTo(Type_course::class);
+        return $this->belongsTo(Type_course::class, 'type_id');
     }
 
     public function materi() {

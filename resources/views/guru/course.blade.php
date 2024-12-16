@@ -17,7 +17,6 @@
 
             {{-- Layout Page --}}
             <div class="layout-page">
-
                 @include('guru.layout.nav')
 
                 <div class="content-wrapper">
@@ -36,7 +35,6 @@
                                     </div>
                                 </div>
                                 {{-- For Loop --}}
-
                                 @foreach ($myCourse as $item)
                                     <div class="col-3">
                                         <div class="item">
@@ -58,7 +56,7 @@
                                                         Type:
                                                     </div>
                                                     <div class="bot">
-                                                        {{ $item->type->name_type }}
+                                                        {{ $item->type_course->name_type }}
                                                     </div>
                                                 </div>
                                                 <div class="for-act">
@@ -66,9 +64,11 @@
                                                         data-bs-toggle="modal">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </div>
-                                                    <div class="act detail">
+
+                                                    <a href="/guru-course_detail/{{ $item->id }}" class="act detail">
                                                         <i class="bi bi-grid-fill"></i>
-                                                    </div>
+                                                    </a>
+
                                                     <div class="act hapus" data-id="{{ $item->id }}">
                                                         <i class="bi bi-trash3"></i>
                                                     </div>
@@ -112,8 +112,9 @@
                                 <div class="row">
                                     <div class="col-12 upload">
                                         <label class="form-label">Unggah Gambar</label>
-                                        <input type="file" class="filepond" name="imagess" accept="image/*" required>
-                                        <input type="file" name="image" id="hiddenImageInput" hidden>
+                                        <input autocomplete="off" type="file" class="filepond" name="imagess" required>
+                                        <input autocomplete="off" type="file" name="image" id="hiddenImageInput"
+                                            hidden>
 
                                     </div>
                                 </div>
@@ -122,16 +123,17 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-label">Nama Course</div>
-                                        <input type="text" name="name" class="form-control" required
-                                            placeholder="Belajar Sains.." maxlength="50">
+                                        <input autocomplete="off" type="text" name="name" class="form-control"
+                                            required placeholder="Belajar Sains.." maxlength="50">
 
                                     </div>
                                     <div class="col-12 drop">
                                         <label class="form-label">Tipe Course</label>
                                         <div class="special">
-                                            <input type="text" class="form-control" readonly required x-model="tipe"
-                                                placeholder="pilih tipe yang sesuai..">
-                                            <input type="hidden" class="form-control" name="type_course" x-model="type">
+                                            <input autocomplete="off" type="text" class="form-control" readonly required
+                                                x-model="tipe" placeholder="pilih tipe yang sesuai..">
+                                            <input autocomplete="off" type="hidden" class="form-control" name="type_course"
+                                                x-model="type">
                                             <div class="dropdown">
                                                 <div class=" dropdown-toggle" data-bs-toggle="dropdown">
                                                     <i class="bi bi-caret-down-fill"></i>
@@ -155,7 +157,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-label">Deskripsi</div>
-                                        <textarea name="deskripsi" id="" required placeholder="Belajar sains bagi pemula.." maxlength="150"></textarea>
+                                        <textarea name="deskripsi" id="" required placeholder="Belajar sains bagi pemula.." maxlength="200"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -200,29 +202,30 @@
                                     <div class="row">
                                         <div class="col-12 upload">
                                             <label class="form-label">Unggah Gambar</label>
-                                            <input type="hidden" name="id" value="{{ $modal->id }}">
-                                            <input type="file" class="filepond" name="imagess" accept="image/*"
+                                            <input autocomplete="off" type="hidden" name="id"
+                                                value="{{ $modal->id }}">
+                                            <input autocomplete="off" type="file" class="filepond" name="imagess"
                                                 data-id="{{ $modal->id }}">
-                                            <input type="file" name="image"
+                                            <input autocomplete="off" type="file" name="image"
                                                 id="hiddenImageInput-{{ $modal->id }}" hidden>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 txt" x-data="{ type: '{{ $modal->type_id }}', tipe: '{{ $modal->type->name_type }}', }">
+                                <div class="col-6 txt" x-data="{ type: '{{ $modal->type_id }}', tipe: '{{ $modal->type_course->name_type }}', }">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-label">Nama Course</div>
-                                            <input type="text" name="name" class="form-control" required
-                                                placeholder="Belajar Sains.." maxlength="50"
+                                            <input autocomplete="off" type="text" name="name" class="form-control"
+                                                required placeholder="Belajar Sains.." maxlength="50"
                                                 value="{{ $modal->name }}">
                                         </div>
                                         <div class="col-12 drop">
                                             <label class="form-label">Tipe Course</label>
                                             <div class="special">
-                                                <input type="text" class="form-control" readonly required
+                                                <input autocomplete="off" type="text" class="form-control" readonly
                                                     x-model="tipe" placeholder="pilih tipe yang sesuai..">
-                                                <input type="hidden" class="form-control" name="type_course"
-                                                    x-model="type">
+                                                <input autocomplete="off" type="hidden" class="form-control"
+                                                    name="type_course" x-model="type">
                                                 <div class="dropdown">
                                                     <div class=" dropdown-toggle" data-bs-toggle="dropdown">
                                                         <i class="bi bi-caret-down-fill"></i>
@@ -246,7 +249,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-label">Deskripsi</div>
-                                            <textarea name="deskripsi" id="" required placeholder="Belajar sains bagi pemula.." maxlength="150">{{ $modal->deskripsi }}</textarea>
+                                            <textarea name="deskripsi" id="" required placeholder="Belajar sains bagi pemula.." maxlength="200">{{ $modal->deskripsi }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -275,8 +278,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            FilePond.registerPlugin(FilePondPluginImagePreview);
-
+            FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
             // Menangani semua elemen filepond baik pada form tambah maupun edit
             const filePondElements = document.querySelectorAll('.filepond');
 
@@ -290,6 +292,8 @@
                     stylePanelAspectRatio: 9 / 16,
                     imagePreviewHeight: 100,
                     imagePreviewUpscale: true,
+                    acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
+                    allowFileTypeValidation: true,
                     labelIdle: `
             <div class="labels">
                 <div class="for-icon">

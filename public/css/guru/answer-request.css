@@ -1,0 +1,177 @@
+:root {
+    --midnight: #2c3e50cc;
+    --solid: #0f3bb5e6;
+    --sky: #00a6ffe6;
+    --font: "Montserrat", sans-serif;
+}
+
+.request {
+    padding: 1rem 2rem;
+
+    .col-12 {
+        .for-request {
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: transparent;
+                line-height: 1.3;
+                border-bottom: none;
+                .title {
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    color: var(--midnight);
+                }
+
+                .subtitle {
+                    font-size: 0.95rem;
+                    color: rgba(44, 62, 80, 0.7);
+                }
+            }
+
+            .table {
+                display: flex;
+                flex-direction: column;
+
+                .head {
+                    display: flex;
+                    background-color: transparent;
+                    padding: 0.5rem;
+
+                    .head-list {
+                        font-size: 1rem;
+                        font-weight: 600;
+                        color: var(--midnight);
+                    }
+
+                    .course-quiz {
+                        width: 30vw;
+                    }
+
+                    .user {
+                        width: 23vw;
+                    }
+
+                    .tgl {
+                        width: 21vw;
+                    }
+
+                    .action {
+                        width: 3vw;
+                    }
+                }
+
+                .body {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+
+                    .body-loop {
+                        margin-top: 1rem;
+                        border-radius: 0.75rem;
+                        overflow: hidden;
+                        background-color: white;
+
+                        display: flex;
+
+                        .course-quiz {
+                            display: flex;
+                            gap: 0.5rem;
+                            width: 30vw;
+
+                            .for-img {
+                                position: relative;
+                                aspect-ratio: 16 / 9;
+                                height: 5rem;
+                                overflow: hidden;
+                                border-radius: 0.5rem;
+
+                                img {
+                                    height: 100%;
+                                    width: 100%;
+                                    object-fit: cover;
+                                    object-position: top left;
+                                }
+                            }
+
+                            .for-detail {
+                                display: flex;
+                                flex-direction: column;
+                                line-height: 1.3;
+
+                                .quiz-name {
+                                    font-size: 1.1rem;
+                                    font-weight: 600;
+                                    color: var(--midnight);
+                                }
+
+                                .course-name {
+                                    font-size: 0.9rem;
+                                    color: rgba(44, 62, 80, 0.6);
+                                }
+                            }
+                        }
+
+                        .user {
+                            width: 23vw;
+
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            line-height: 1.3;
+
+                            .name {
+                                font-weight: 600;
+                                font-size: 1.1rem;
+                                color: var(--midnight);
+                            }
+
+                            .email {
+                                font-size: 0.95rem;
+                                color: var(--midnight);
+                                font-style: italic;
+                            }
+                        }
+
+                        .tgl {
+                            width: 21vw;
+                            font-size: 1.1rem;
+                            font-style: italic;
+                            font-weight: 300;
+                            color: var(--midnight);
+
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .action {
+                            width: 5vw;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            a {
+                                height: 2.5rem;
+                                width: 2.5rem;
+                                border-radius: 0.5rem;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: rgba(235, 48, 235, 0.75);
+
+                                i {
+                                    font-size: 1.3rem;
+                                    color: white;
+                                }
+                            }
+
+                            a:hover {
+                                background-color: rgba(235, 48, 235, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

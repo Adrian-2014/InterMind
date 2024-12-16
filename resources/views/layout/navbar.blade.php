@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top" id="navs">
     <div class="navbar-content">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{{ asset('property-img/logo.png') }}">
 
         </a>
@@ -21,14 +21,14 @@
                     <div class="dropdown-content">
                         <div class="wrap">
                             @foreach ($type_course as $item)
-                                <div class="item">
+                                <a href="/filter/{{ $item->id }}" class="item">
                                     <div class="for-icon">
                                         <img src="{{ asset('Uploads/for-course_type/' . $item->gambar) }}">
                                     </div>
                                     <div class="for-text">
                                         {{ $item->name_type }}
                                     </div>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                     </div>
@@ -103,13 +103,15 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Nama</label>
-                                <input type="hidden" name="id" value="{{ Auth::guard('web')->user()->id }}">
+                                <input autocomplete="off" type="hidden" name="id"
+                                    value="{{ Auth::guard('web')->user()->id }}">
                                 <div class="in-wrap">
                                     <div class="logo">
                                         <i class="bi bi-feather"></i>
                                     </div>
-                                    <input type="text" class="form-control" name="name" required maxlength="25"
-                                        value="{{ Auth::guard('web')->user()->name }}" placeholder="Thomas Shelby..">
+                                    <input autocomplete="off" type="text" class="form-control" name="name"
+                                        required maxlength="25" value="{{ Auth::guard('web')->user()->name }}"
+                                        placeholder="Thomas Shelby..">
                                 </div>
                             </div>
                         </div>
@@ -140,13 +142,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Email</label>
-                                <input type="hidden" name="id" value="{{ Auth::guard('web')->user()->id }}">
+                                <input autocomplete="off" type="hidden" name="id"
+                                    value="{{ Auth::guard('web')->user()->id }}">
                                 <div class="in-wrap">
                                     <div class="logo">
                                         <i class="bi bi-at"></i>
                                     </div>
-                                    <input type="email" class="form-control" name="email" required
-                                        maxlength="35" value="{{ Auth::guard('web')->user()->email }}"
+                                    <input autocomplete="off" type="email" class="form-control" name="email"
+                                        required maxlength="35" value="{{ Auth::guard('web')->user()->email }}"
                                         placeholder="example@gmail.com">
                                 </div>
                             </div>
@@ -178,14 +181,15 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Nomor Telepon</label>
-                                <input type="hidden" name="id" value="{{ Auth::guard('web')->user()->id }}">
+                                <input autocomplete="off" type="hidden" name="id"
+                                    value="{{ Auth::guard('web')->user()->id }}">
                                 <div class="in-wrap">
                                     <div class="logo">
                                         <i class="bi bi-telephone"></i>
                                     </div>
-                                    <input type="text" class="form-control" name="nomor_telepon" required
-                                        maxlength="13" value="{{ Auth::guard('web')->user()->no_telepon }}"
-                                        placeholder="08xxx..">
+                                    <input autocomplete="off" type="text" class="form-control"
+                                        name="nomor_telepon" required maxlength="13"
+                                        value="{{ Auth::guard('web')->user()->no_telepon }}" placeholder="08xxx..">
                                 </div>
                             </div>
                         </div>
@@ -216,12 +220,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Tanggal Lahir</label>
-                                <input type="hidden" name="id" value="{{ Auth::guard('web')->user()->id }}">
+                                <input autocomplete="off" type="hidden" name="id"
+                                    value="{{ Auth::guard('web')->user()->id }}">
                                 <div class="in-wrap">
                                     <div class="logo">
                                         <i class="bi bi-calendar2-week"></i>
                                     </div>
-                                    <input type="date" class="form-control" name="tanggal_lahir" required
+                                    <input autocomplete="off" type="date" class="form-control"
+                                        name="tanggal_lahir" required
                                         value="{{ Auth::guard('web')->user()->tanggal_lahir }}">
                                 </div>
                             </div>
@@ -253,13 +259,15 @@
                         <div class="row">
                             <div class="col-12 drop" x-data="{ jk: '{{ Auth::guard('web')->user()->jenis_kelamin }}' }">
                                 <label class="form-label">Jenis Kelamin</label>
-                                <input type="hidden" name="id" value="{{ Auth::guard('web')->user()->id }}">
+                                <input autocomplete="off" type="hidden" name="id"
+                                    value="{{ Auth::guard('web')->user()->id }}">
                                 <div class="special">
                                     <div class="logo">
                                         <i class="bi bi-gender-ambiguous"></i>
                                     </div>
-                                    <input type="text" class="form-control" required name="jenis_kelamin"
-                                        maxlength="25" placeholder="laki laki / perempuan.." readonly x-model="jk">
+                                    <input autocomplete="off" type="text" class="form-control" required
+                                        name="jenis_kelamin" maxlength="25" placeholder="laki laki / perempuan.."
+                                        readonly x-model="jk">
                                     <div class="dropdown">
                                         <div class=" dropdown-toggle" data-bs-toggle="dropdown">
                                             <i class="bi bi-caret-down-fill"></i>
@@ -313,12 +321,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Profil <span>(Disarankan 1 : 1)</span></label>
-                                <input type="hidden" name="id" value="{{ Auth::guard('web')->user()->id }}">
+                                <input autocomplete="off" type="hidden" name="id"
+                                    value="{{ Auth::guard('web')->user()->id }}">
                                 <div class="in-wrap">
                                     {{-- <div class="logo">
                                         <i class="bi bi-person-bounding-box"></i>
                                     </div> --}}
-                                    <input type="file" class="form-control"name="profil" required>
+                                    <input autocomplete="off" type="file" class="form-control"name="profil"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -382,8 +392,8 @@
                                         <div class="logo">
                                             <i class="bi bi-at"></i>
                                         </div>
-                                        <input type="email" class="form-control" name="email" required
-                                            maxlength="35" placeholder="example@gmail..">
+                                        <input autocomplete="off" type="email" class="form-control" name="email"
+                                            required maxlength="35" placeholder="example@gmail..">
                                     </div>
                                 </div>
                                 <div class="col-12 pass">
@@ -393,8 +403,8 @@
                                         <div class="logo">
                                             <i class="bi bi-key"></i>
                                         </div>
-                                        <input type="password" class="form-control target" name="password" required
-                                            maxlength="35" placeholder="password#123..">
+                                        <input autocomplete="off" type="password" class="form-control target"
+                                            name="password" required maxlength="35" placeholder="password#123..">
                                         <div class="toggles">
                                             <i class="bi bi-eye-slash"></i>
                                         </div>
@@ -431,8 +441,8 @@
                                         <div class="logo">
                                             <i class="bi bi-at"></i>
                                         </div>
-                                        <input type="email" class="form-control" name="email" required
-                                            maxlength="35" placeholder="example@gmail..">
+                                        <input autocomplete="off" type="email" class="form-control" name="email"
+                                            required maxlength="35" placeholder="example@gmail..">
                                     </div>
                                 </div>
                                 <div class="col-12 pass">
@@ -442,8 +452,8 @@
                                         <div class="logo">
                                             <i class="bi bi-key"></i>
                                         </div>
-                                        <input type="password" class="form-control target" name="password" required
-                                            maxlength="35" placeholder="password#123..">
+                                        <input autocomplete="off" type="password" class="form-control target"
+                                            name="password" required maxlength="35" placeholder="password#123..">
                                         <div class="toggles">
                                             <i class="bi bi-eye-slash"></i>
                                         </div>
@@ -516,8 +526,8 @@
                                     <div class="logo">
                                         <i class="bi bi-at"></i>
                                     </div>
-                                    <input type="email" class="form-control" required name="email"
-                                        maxlength="35" placeholder="example@gmail..">
+                                    <input autocomplete="off" type="email" class="form-control" required
+                                        name="email" maxlength="35" placeholder="example@gmail..">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -526,8 +536,8 @@
                                     <div class="logo">
                                         <i class="bi bi-person"></i>
                                     </div>
-                                    <input type="text" class="form-control" required name="name"
-                                        maxlength="25" placeholder="Thomas Shelby..">
+                                    <input autocomplete="off" type="text" class="form-control" required
+                                        name="name" maxlength="25" placeholder="Thomas Shelby..">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -536,8 +546,8 @@
                                     <div class="logo">
                                         <i class="bi bi-telephone"></i>
                                     </div>
-                                    <input type="tel" class="form-control" required name="no_telepon"
-                                        maxlength="13" placeholder="08xxxx.."
+                                    <input autocomplete="off" type="tel" class="form-control" required
+                                        name="no_telepon" maxlength="13" placeholder="08xxxx.."
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                 </div>
                             </div>
@@ -547,7 +557,8 @@
                                     <div class="logo">
                                         <i class="bi bi-calendar2-week"></i>
                                     </div>
-                                    <input type="date" class="form-control" required name="tanggal_lahir">
+                                    <input autocomplete="off" type="date" class="form-control" required
+                                        name="tanggal_lahir">
                                 </div>
                             </div>
                             <div class="col-6 drop" x-data="{ jk: '' }">
@@ -556,8 +567,9 @@
                                     <div class="logo">
                                         <i class="bi bi-gender-ambiguous"></i>
                                     </div>
-                                    <input type="text" class="form-control" required name="jenis_kelamin"
-                                        maxlength="25" placeholder="laki laki / perempuan.." readonly x-model="jk">
+                                    <input autocomplete="off" type="text" class="form-control" required
+                                        name="jenis_kelamin" maxlength="25" placeholder="laki laki / perempuan.."
+                                        readonly x-model="jk">
                                     <div class="dropdown">
                                         <div class=" dropdown-toggle" data-bs-toggle="dropdown">
                                             <i class="bi bi-caret-down-fill"></i>
@@ -589,8 +601,8 @@
                                     <div class="logo">
                                         <i class="bi bi-key"></i>
                                     </div>
-                                    <input type="password" class="form-control target" required name="password"
-                                        maxlength="35" placeholder="password#123..">
+                                    <input autocomplete="off" type="password" class="form-control target" required
+                                        name="password" maxlength="35" placeholder="password#123..">
                                     <div class="toggles">
                                         <i class="bi bi-eye-slash"></i>
                                     </div>
@@ -621,8 +633,8 @@
                                     <div class="logo">
                                         <i class="bi bi-at"></i>
                                     </div>
-                                    <input type="email" class="form-control" required name="email"
-                                        maxlength="35" placeholder="example@gmail..">
+                                    <input autocomplete="off" type="email" class="form-control" required
+                                        name="email" maxlength="35" placeholder="example@gmail..">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -631,8 +643,8 @@
                                     <div class="logo">
                                         <i class="bi bi-person"></i>
                                     </div>
-                                    <input type="text" class="form-control" required name="name"
-                                        maxlength="25" placeholder="Thomas Shelby..">
+                                    <input autocomplete="off" type="text" class="form-control" required
+                                        name="name" maxlength="25" placeholder="Thomas Shelby..">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -641,8 +653,8 @@
                                     <div class="logo">
                                         <i class="bi bi-telephone"></i>
                                     </div>
-                                    <input type="tel" class="form-control" required name="no_telepon"
-                                        maxlength="13" placeholder="08xxxx.."
+                                    <input autocomplete="off" type="tel" class="form-control" required
+                                        name="no_telepon" maxlength="13" placeholder="08xxxx.."
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                 </div>
                             </div>
@@ -652,7 +664,8 @@
                                     <div class="logo">
                                         <i class="bi bi-calendar2-week"></i>
                                     </div>
-                                    <input type="date" class="form-control" required name="tanggal_lahir">
+                                    <input autocomplete="off" type="date" class="form-control" required
+                                        name="tanggal_lahir">
                                 </div>
                             </div>
                             <div class="col-6 drop" x-data="{ jk: '' }">
@@ -661,8 +674,9 @@
                                     <div class="logo">
                                         <i class="bi bi-gender-ambiguous"></i>
                                     </div>
-                                    <input type="text" class="form-control" required name="jenis_kelamin"
-                                        maxlength="25" placeholder="laki laki / perempuan.." readonly x-model="jk">
+                                    <input autocomplete="off" type="text" class="form-control" required
+                                        name="jenis_kelamin" maxlength="25" placeholder="laki laki / perempuan.."
+                                        readonly x-model="jk">
                                     <div class="dropdown">
                                         <div class=" dropdown-toggle" data-bs-toggle="dropdown">
                                             <i class="bi bi-caret-down-fill"></i>
@@ -694,8 +708,8 @@
                                     <div class="logo">
                                         <i class="bi bi-key"></i>
                                     </div>
-                                    <input type="password" class="form-control target" required name="password"
-                                        maxlength="35" placeholder="password#123..">
+                                    <input autocomplete="off" type="password" class="form-control target" required
+                                        name="password" maxlength="35" placeholder="password#123..">
                                     <div class="toggles">
                                         <i class="bi bi-eye-slash"></i>
                                     </div>
@@ -731,7 +745,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <form action="logout" method="post">
+                        <form action="/logout" method="post">
                             @csrf
                             <button type="submit">
                                 <i class="bi bi-power"></i>

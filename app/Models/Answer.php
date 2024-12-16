@@ -9,11 +9,11 @@ class Answer extends Model
 {
     use HasFactory;
 
-    public function question() {
-        return $this->belongsTo(Question::class);
+    public function quiz() {
+        return $this->belongsTo(Quiz::class, 'quiz_id');
     }
-    
-    public function right_answer() {
-        return $this->hasOne(Right_answer::class);
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

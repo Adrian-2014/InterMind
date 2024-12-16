@@ -12,9 +12,12 @@
 
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js">
+    </script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet">
+
 
     <link rel="icon" href="{{ asset('property-img/head.png') }}" type="image/x-icon" height="200" width="200">
 
@@ -52,6 +55,7 @@
     <script src="{{ asset('dashboard-assets') }}/assets/js/config.js"></script>
 
     <link rel="stylesheet" href="{{ asset('css/guru/nav.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/guru/main.css') }}" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.min.js"
         integrity="sha512-Atu8sttM7mNNMon28+GHxLdz4Xo2APm1WVHwiLW9gW4bmHpHc/E2IbXrj98SmefTmbqbUTOztKl5PDPiu0LD/A=="

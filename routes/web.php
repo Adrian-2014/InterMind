@@ -1,16 +1,23 @@
 <?php
 
 use App\Http\Controllers\adminControll;
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\authControll;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FollowCourseController;
+use App\Http\Controllers\MateriController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TypeCourseController;
+use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\userControll;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [userControll::class, 'index'])->name('index');
+
+Route::get('/filter/{id}', [userControll::class, 'filter']);
 
 
 
@@ -21,7 +28,7 @@ Route::post('register-guru', [authControll::class, 'daftarGuru']);
 Route::post('login-user', [authControll::class, 'loginUser']);
 Route::post('login-guru', [authControll::class, 'loginGuru']);
 
-Route::post('logout', [authControll::class, 'logout']);
+Route::post('/logout', [authControll::class, 'logout']);
 // Authentication
 
 
@@ -38,10 +45,14 @@ Route::post('/editprofil_profil', [userControll::class, 'editProfil']);
 // Editz
 
 // Course
-
-Route::get('/course', [userControll::class, 'course']);
-
+Route::get('/course/{id}', [userControll::class, 'course']);
+Route::get('/quiz/{id}', [userControll::class, 'quiz']);
+Route::post('/store-answer', [AnswerController::class, 'store']);
 // Course
+
+Route::post('/follow-course', [FollowCourseController::class, 'follow']);
+Route::post('/cancel-follow-course', [FollowCourseController::class, 'cancel']);
+Route::post('/post-ulasan', [UlasanController::class, 'post']);
 
 // USER
 
@@ -54,13 +65,34 @@ Route::get('/guru-index', [TeacherController::class, 'index'])->name('guru');
 Route::post('/upload', [TeacherController::class, 'upload'])->name('upload');
 
 // Course
-
 Route::get('/guru-course', [TeacherController::class, 'course']);
 Route::post('/add-course', [CourseController::class, 'store']);
 Route::post('/update-course', [CourseController::class, 'update']);
 Route::post('/delete-course', [CourseController::class, 'destroy']);
-
 // Course
+
+// Course Detail
+
+Route::get('/guru-course_detail/{id}', [TeacherController::class, 'courseDetail']);
+Route::post('/add-materi', [MateriController::class, 'store']);
+Route::post('/update-materi', [MateriController::class, 'update']);
+Route::post('/delete-materi', [MateriController::class, 'destroy']);
+
+Route::get('/preview/quiz/{id}', [MateriController::class, 'play']);
+
+Route::post('/add-quiz', [QuizController::class, 'store']);
+Route::post('/update-quiz', [QuizController::class, 'update']);
+Route::post('/delete-quiz', [QuizController::class, 'destroy']);
+// Course Detail
+
+// Answer
+
+Route::get('/guru-answer_request', [TeacherController::class, 'answer']);
+Route::get('/guru-answer_verification/{id}', [TeacherController::class, 'answerVerification']);
+
+Route::post('/store-right_answer', [AnswerController::class, 'rightAnswer']);
+Route::post('/store-wrong_answer', [AnswerController::class, 'wrongAnswer']);
+// Answer
 
 
 // TEACHER

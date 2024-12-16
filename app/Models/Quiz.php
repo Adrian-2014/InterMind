@@ -12,11 +12,11 @@ class Quiz extends Model
     protected $table = 'quizzes';
 
     public function course() {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public function question() {
-        return $this->belongsTo(Question::class);
+    public function answer() {
+        return $this->hasMany(Answer::class);
     }
 
     public function penilaian() {

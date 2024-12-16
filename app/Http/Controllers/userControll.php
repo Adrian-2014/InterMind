@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Course;
-use App\Models\User;
+use App\Models\Follow_course;
+use App\Models\Materi;
+use App\Models\Quiz;
 use App\Models\Type_course;
+use App\Models\Ulasan;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,34 +24,81 @@ class userControll extends Controller
         // For Navbar
         
         $courseList = Course::inRandomOrder()->get();
+        $ulasans = Ulasan::limit(15)->inRandomOrder()->get();
        
 
         if(Auth::check()) {
             $auth = Auth::guard('web')->user();
             $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
         
-            return view('welcome', compact('tanggal_lahir', 'courseList', 'type_course'));
+            return view('welcome', compact('tanggal_lahir', 'courseList', 'type_course', 'ulasans'));
         }else {
-            return view('welcome', compact('courseList', 'type_course'));
+            return view('welcome', compact('courseList', 'type_course', 'ulasans'));
         }
 
     }
 
-    public function course(Request $request) {
+    public function filter($id) {
+
+        // For Navbar
+        $type_course = Type_course::get();
+        // For Navbar
+
+        $courseList = Course::where('type_id', $id)->inRandomOrder()->get();
+        $typeTarget = Type_course::where('id', $id)->first();
+
+        if(Auth::check()) {
+            $auth = Auth::guard('web')->user();
+            $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
+        
+            return view('filter', compact('tanggal_lahir', 'courseList', 'type_course', 'typeTarget'));
+        }else {
+            return view('filter', compact('courseList', 'type_course', 'typeTarget'));
+        }
+
+    }
+
+    public function course($id) {
+        // For Navbar
+        $type_course = Type_course::get();
+        $auth = Auth::guard('web')->user();
+        $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
+        // For Navbar
+
+        $course = Course::where('id', $id)->first();
+        $materies = Materi::where('course_id', $id)->get();
+        $quizzes = Quiz::where('course_id', $id)->get();
+        $follow = Follow_course::where('user_id', $auth->id)->where('course_id', $id)->first();    
+
+        // For Rating
+        $review = Ulasan::where('course_id', $id)->count();
+        $rating = Ulasan::where('course_id', $id)->avg('rating');
+        // For Rating
+
+        // For Progress
+        $totalQuiz = Quiz::where('course_id', $id)->count();
+        $completedQuiz = Answer::whereHas('quiz', function ($query) use ($id) {
+            $query->where('course_id', $id);
+        })->where('user_id', $auth->id)->count();
+
+        $progressPercentage = $totalQuiz > 0 ? ($completedQuiz / $totalQuiz) * 100 : 0;
+        $progress = floor($progressPercentage);
+        // For Progress
+
+        return view('course', compact('course', 'type_course', 'tanggal_lahir', 'materies', 'quizzes', 'follow', 'review', 'rating', 'progress'));
+    }
+
+    public function quiz($id) {
 
         // For Navbar
         $type_course = Type_course::get();
         $auth = Auth::guard('web')->user();
         $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
-        
         // For Navbar
 
-
-        $course = Course::where('id', $request->id)->first();
-
-        return view('course', compact('course', 'type_course', 'tanggal_lahir'));
+        $quiz = Quiz::where('id', $id)->first();
+        return view('quiz', compact('type_course', 'tanggal_lahir', 'auth', 'quiz'));
     }
-
 
     // EDIT DATA PROFIL
 
@@ -150,14 +202,14 @@ class userControll extends Controller
         }
 
         if ($user->profil) {
-            $oldImagePath = public_path('upload-profil/' . $user->profil);
+            $oldImagePath = public_path('Uploads/for-profil/' . $user->profil);
             if (file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
         }
  
         $name = time() . '.' . $request->profil->getClientOriginalExtension();
-        $request->profil->move(public_path('upload-profil'), $name);
+        $request->profil->move(public_path('Uploads/for-profil'), $name);
     
         // Update data profil user
         $user->profil = $name;

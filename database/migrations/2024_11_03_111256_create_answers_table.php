@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('jawaban');
 
-            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
+            $table->string('jawaban');
+            $table->string('file')->nullable();
+            $table->string('nilai')->nullable();
+            $table->string('status');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
             
             $table->timestamps();
         });

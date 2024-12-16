@@ -34,7 +34,7 @@ class CourseController extends Controller
             $course->gambar = $imagePath;
             $course->save();
 
-            return redirect()->back()->with('success', 'Course Berhasil Ditambahkan');
+            return redirect()->back()->with('success', 'Course berhasil Ditambahkan!');
         }
     }
 
@@ -78,7 +78,7 @@ class CourseController extends Controller
             $course->deskripsi = $request->deskripsi;
             $course->save();
 
-            return redirect()->back()->with('success', 'Course Berhasil Diupdate!');
+            return redirect()->back()->with('success', 'Course berhasil Diperbarui!');
         }
     }
 
@@ -96,7 +96,7 @@ class CourseController extends Controller
         }
 
         $course->delete();
-        return redirect()->back()->with('success', 'Tipe Course Berhasil Hapus!');
+        return redirect()->back()->with('success', 'Course berhasil Dihapus!');
 
      
     }

@@ -25,7 +25,7 @@ class userSeed extends Seeder
             ],
             [
                 'name' => 'Thomas Shelby',
-                'email' => 'shelbyc1919@gmail.com',
+                'email' => 'shelby1919@gmail.com',
                 'no_telepon' => '08190038205',
                 'tanggal_lahir' => \DateTime::createFromFormat('d/m/Y', '07/05/1892')->format('Y-m-d'),
                 'jenis_kelamin' => 'Laki-Laki',

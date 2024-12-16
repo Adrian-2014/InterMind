@@ -51,6 +51,8 @@
     <!-- FilePond JS -->
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
     <!-- FilePond Plugin (Pratinjau Gambar) -->
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js">
+    </script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
         rel="stylesheet">
