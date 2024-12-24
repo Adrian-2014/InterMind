@@ -135,16 +135,11 @@
                                         {{ Str::limit($course->deskripsi, 75, '...') }}
                                     </div>
                                 </div>
-                                @auth
-                                    <a href="/course/{{ $course->id }}" class="lihat">
-                                        Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                                    </a>
-                                @endauth
-                                @guest
-                                    <div class="lihat lihat-course">
-                                        Lihat Course <i class="bi bi-chevron-compact-right"></i>
-                                    </div>
-                                @endguest
+
+                                <a href="/course/{{ $course->id }}" class="lihat">
+                                    Lihat Course <i class="bi bi-chevron-compact-right"></i>
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -176,42 +171,60 @@
                             <ul class="splide__list">
                                 @foreach ($ulasans as $ulasan)
                                     <li class="splide__slide">
-                                        <div class="star">
-                                            @for ($i = 0; $i < $ulasan->rating; $i++)
-                                                <i class="bi bi-star-fill"></i>
-                                            @endfor
-                                            @for ($i = $ulasan->rating; $i < 5; $i++)
-                                                <i class="bi bi-star"></i>
-                                            @endfor
-                                        </div>
-                                        <div class="comment">
-                                            <div class="for-quote">
-                                                <img src="{{ asset('property-img/quote.png') }}">
-                                            </div>
-                                            <div class="for-message">
-                                                {{ $ulasan->ulasan }}
-                                            </div>
-                                        </div>
-                                        <div class="user-data">
-                                            <div class="for-prof">
-                                                @if ($ulasan->user->profil)
-                                                    <img src="{{ asset('Uploads/for-profil/' . $ulasan->user->profil) }}">
-                                                @else
-                                                    <img src="{{ asset('property-img/profile.jpg') }}">
-                                                @endif
-                                            </div>
-                                            <div class="data">
-                                                <div class="name">
-                                                    {{ $ulasan->user->name }}
+                                        <div class="review">
+                                            <div class="review-top">
+                                                <div class="for-course">
+                                                    <div class="course-name">
+                                                        {{ $ulasan->course->name }}
+                                                    </div>
+                                                    <div class="teacher-name">
+                                                        {{ $ulasan->course->teacher->name }}
+                                                    </div>
                                                 </div>
-                                                <div class="role">
-                                                    Pelajar
+                                                <div class="for-star">
+                                                    @for ($i = 0; $i < $ulasan->rating; $i++)
+                                                        <i class="bi bi-star-fill active"></i>
+                                                    @endfor
+                                                    @for ($i = $ulasan->rating; $i < 5; $i++)
+                                                        <i class="bi bi-star-fill"></i>
+                                                    @endfor
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="tanggal">
-                                            <span>Diposting pada </span>
-                                            {{ \Carbon\Carbon::parse($ulasan->created_at)->translatedFormat('j F Y') }}
+
+                                            <div class="review-main">
+                                                <div class="icon">
+                                                    <i class='bx bxs-quote-alt-right'></i>
+                                                </div>
+
+                                                <div class="ulasan">
+                                                    {{ $ulasan->ulasan }}
+                                                </div>
+                                            </div>
+
+
+                                            <div class="user">
+                                                <div class="for-profil">
+                                                    @if (!is_null($ulasan->user->profil))
+                                                        <img
+                                                            src="{{ asset('Uploads/for-profil/' . $ulasan->user->profil) }}">
+                                                    @else
+                                                        <img src="{{ asset('property-img/profile.jpg') }}">
+                                                    @endif
+                                                </div>
+                                                <div class="user-detail">
+                                                    <div class="username">
+                                                        {{ $ulasan->user->name }}
+                                                    </div>
+                                                    <div class="userrole">
+                                                        Pelajar
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="review-bottom">
+                                                Diposting pada
+                                                <span>{{ \Carbon\Carbon::parse($ulasan->updated_at)->translatedFormat('j F Y') }}</span>
+                                            </div>
                                         </div>
                                     </li>
                                 @endforeach
@@ -386,6 +399,8 @@
         var splide = new Splide('#splide-comment', {
             type: 'loop',
             arrows: false,
+            autoplay: true,
+            interval: 10000,
         });
 
         splide.mount();

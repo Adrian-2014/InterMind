@@ -5,7 +5,6 @@
     --font: "Montserrat", sans-serif;
 }
 
-
 .content-wrapper {
     .data {
         padding: 2.5rem;
@@ -81,6 +80,7 @@
                                 background-color: white;
                                 padding: 0.2rem;
                                 border-radius: 0.5rem;
+                                height: 90vh;
 
                                 .title {
                                     line-height: 1.2;
@@ -102,6 +102,8 @@
                                     border-radius: 0.35rem;
                                     background-color: #f8f8f8;
                                     padding: 0.25rem 0;
+                                    max-height: 75vh !important;
+                                    overflow: hidden;
 
                                     .table-head {
                                         display: flex;
@@ -123,40 +125,34 @@
 
                                         .courses-name {
                                             /* background-color: red; */
-                                            width: 11.5rem;
+                                            width: 13rem;
                                         }
 
                                         .user-name {
                                             /* background-color: green; */
-
-                                            width: 12.5rem;
+                                            width: 14rem;
                                         }
 
                                         .progres {
                                             /* background-color: blue; */
-                                            width: 10rem;
-                                        }
-
-                                        .rating {
-                                            /* background-color: yellow; */
-                                            width: 6rem;
+                                            width: 11rem;
                                         }
 
                                         .join-date {
                                             /* background-color: black; */
-                                            width: 10.25rem;
+                                            width: 9rem;
                                         }
                                     }
 
                                     .table-body {
                                         margin-top: 0.3rem;
                                         margin: 0 1rem;
-
                                         display: flex;
+                                        height: auto !important;
                                         flex-direction: column;
 
                                         .list {
-                                            padding: 0.585rem 0.2rem;
+                                            padding: 0.58rem 0.2rem;
                                             display: flex;
                                             align-items: center;
                                             justify-content: space-between;
@@ -172,15 +168,19 @@
                                             }
                                             .courses-name {
                                                 /* background-color: red; */
-                                                width: 11.5rem;
+                                                width: 13rem;
+                                                font-size: 0.9rem;
+                                                font-weight: 500;
+                                                color: var(--midnight);
                                             }
 
                                             .user-name {
                                                 /* background-color: green; */
-                                                width: 12.5rem;
+                                                width: 14rem;
                                                 display: flex;
                                                 align-items: center;
                                                 gap: 0.45rem;
+                                                font-size: 0.95rem;
 
                                                 .for-pp {
                                                     height: 1.8rem;
@@ -197,13 +197,13 @@
 
                                             .progres {
                                                 /* background-color: greenyellow; */
-                                                width: 10rem;
+                                                width: 11rem;
                                                 display: flex;
                                                 align-items: center;
                                                 gap: 0.5rem;
                                                 .progress {
-                                                    height: 0.5rem;
-                                                    width: 6rem;
+                                                    height: 0.65rem;
+                                                    width: 9rem;
                                                     overflow: hidden;
 
                                                     .progress-bar {
@@ -216,35 +216,10 @@
                                                 }
                                             }
 
-                                            .rating {
-                                                /* background-color: yellow; */
-                                                width: 6rem;
-
-                                                .bi-star-fill {
-                                                    color: rgb(255, 230, 0);
-                                                }
-                                            }
-
                                             .join-date {
                                                 /* background-color: black; */
                                                 width: 9rem;
-                                            }
-
-                                            .dots {
-                                                overflow: unset !important;
-
-                                                button {
-                                                    background-color: transparent;
-                                                    border: none;
-                                                }
-
-                                                .dropdown-menu {
-                                                    min-width: 0px !important;
-                                                    padding: 0.5rem 1.5rem;
-                                                    width: 9rem;
-                                                    font-size: 0.95rem;
-                                                    font-weight: 500;
-                                                }
+                                                font-size: 0.95rem;
                                             }
                                         }
                                     }
@@ -362,118 +337,6 @@
                                 flex-direction: column;
                                 background-color: white;
 
-                                .for-info {
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: end;
-                                    .dropdown-toggle {
-                                        cursor: pointer;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: end;
-                                        padding: 0.25rem 0.5rem;
-                                        margin-right: -0.5rem;
-                                        i {
-                                            color: var(--sky);
-                                            font-size: 1.2rem;
-                                        }
-                                    }
-
-                                    .dropdown-menu.show {
-                                        display: flex;
-                                        flex-direction: column;
-                                        padding: 0.5rem 1rem !important;
-                                        .list {
-                                            display: flex;
-                                            align-items: center;
-                                            gap: 0.75rem;
-                                            padding: 0.25rem 0;
-                                            width: 19rem;
-
-                                            height: 2.5rem;
-
-                                            .color-indicator {
-                                                height: 1rem !important;
-                                                width: 1rem !important;
-                                                border-radius: 50%;
-                                            }
-
-                                            .new-all {
-                                                background-color: rgba(
-                                                    0,
-                                                    8,
-                                                    255,
-                                                    0.5
-                                                );
-                                            }
-                                            .new-course {
-                                                background-color: rgba(
-                                                    44,
-                                                    62,
-                                                    80,
-                                                    0.5
-                                                );
-                                            }
-                                            .new-materi {
-                                                background-color: rgba(
-                                                    174,
-                                                    14,
-                                                    237,
-                                                    0.5
-                                                );
-                                            }
-                                            .new-kuis {
-                                                background-color: rgba(
-                                                    55,
-                                                    255,
-                                                    0,
-                                                    0.5
-                                                );
-                                            }
-                                            .new-cm {
-                                                background-color: rgba(
-                                                    255,
-                                                    0,
-                                                    0,
-                                                    0.5
-                                                );
-                                            }
-                                            .new-ck {
-                                                background-color: rgba(
-                                                    255,
-                                                    221,
-                                                    0,
-                                                    0.5
-                                                );
-                                            }
-                                            .new-mk {
-                                                background-color: rgba(
-                                                    0,
-                                                    255,
-                                                    247,
-                                                    0.5
-                                                );
-                                            }
-                                            .today {
-                                                background: linear-gradient(
-                                                    to bottom right,
-                                                    var(--solid),
-                                                    rgb(0, 162, 255)
-                                                );
-                                            }
-
-                                            .explanation {
-                                                width: 17rem !important;
-                                                font-size: 0.9rem;
-                                                text-wrap: wrap;
-                                                font-weight: 500;
-                                                color: var(--midnight);
-                                                line-height: 1.1;
-                                            }
-                                        }
-                                    }
-                                }
-
                                 .calendar_header {
                                     padding: 0.75rem 1rem;
                                     display: flex;
@@ -564,20 +427,16 @@
                                         font-weight: bold;
                                     }
 
-                                    .past-date {
-                                        /* background-color: yellow; */
-                                    }
-
-                                    .future-date {
-                                        /* background-color: blue; */
-                                    }
-
                                     .cok {
                                         background-color: aqua;
 
                                         color: white !important;
                                         font-size: 1rem;
                                         font-weight: bold;
+                                    }
+
+                                    .date::after {
+                                        display: none;
                                     }
                                 }
                             }

@@ -24,9 +24,15 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-12 for-things">
-                                    <div class="title">
-                                        Course Kamu
+                                    <div class="header">
+                                        <div class="title">
+                                            COURSE
+                                        </div>
+                                        <div class="subtitle">
+                                            daftar course yang kamu buat
+                                        </div>
                                     </div>
+
 
                                     <div class="action">
                                         <div class="add" data-bs-toggle="modal" data-bs-target="#add-course">

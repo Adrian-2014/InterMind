@@ -38,6 +38,29 @@ class userControll extends Controller
 
     }
 
+    public function profil() {
+        // For Navbar
+        $type_course = Type_course::get();
+        $tanggal_lahir = Auth::guard('web')->user()->tanggal_lahir ? Carbon::parse(Auth::guard('web')->user()->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
+        // For Navbar 
+
+        $id = Auth::guard('web')->user()->id;
+
+        $myCourse = Course::whereHas('user', function($query) use ($id) {
+            $query->where('user_id', $id);
+        })->inRandomOrder()->get();
+
+        $countMyQuiz = Quiz::whereHas('answer', function($query) use ($id) {
+            $query->where('user_id', $id);
+        })->count();
+
+        $countMyCourse = Course::whereHas('user', function($query) use ($id) {
+            $query->where('user_id', $id);
+        })->count();
+
+        return view('profil', compact('myCourse', 'countMyQuiz', 'type_course', 'tanggal_lahir', 'countMyCourse'));
+    }
+
     public function filter($id) {
 
         // For Navbar
@@ -61,31 +84,54 @@ class userControll extends Controller
     public function course($id) {
         // For Navbar
         $type_course = Type_course::get();
-        $auth = Auth::guard('web')->user();
-        $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
         // For Navbar
 
         $course = Course::where('id', $id)->first();
         $materies = Materi::where('course_id', $id)->get();
         $quizzes = Quiz::where('course_id', $id)->get();
-        $follow = Follow_course::where('user_id', $auth->id)->where('course_id', $id)->first();    
 
         // For Rating
         $review = Ulasan::where('course_id', $id)->count();
         $rating = Ulasan::where('course_id', $id)->avg('rating');
         // For Rating
 
-        // For Progress
-        $totalQuiz = Quiz::where('course_id', $id)->count();
-        $completedQuiz = Answer::whereHas('quiz', function ($query) use ($id) {
-            $query->where('course_id', $id);
-        })->where('user_id', $auth->id)->count();
+        if(Auth::check()) {
+            $auth = Auth::guard('web')->user();
+            $tanggal_lahir = $auth->tanggal_lahir ? Carbon::parse($auth->tanggal_lahir)->format('j F Y') : 'Tanggal tidak tersedia';
+            
+            $follow = Follow_course::where('user_id', $auth->id)->where('course_id', $id)->first();    
+            
+            // For Progress
+            $totalQuiz = Quiz::where('course_id', $id)->count();
+            $completedQuiz = Answer::whereHas('quiz', function ($query) use ($id) {
+                $query->where('course_id', $id);
+            })->where('user_id', $auth->id)->count();
+    
+            $progressPercentage = $totalQuiz > 0 ? ($completedQuiz / $totalQuiz) * 100 : 0;
+            $progress = floor($progressPercentage);
+            // For Progress
+    
+            // For Nilai
+            $totalJawaban = Answer::where('user_id', $auth->id)->where('status', 'Diverifikasi')->whereHas('quiz', function($query) use ($id) {
+                $query->where('course_id', $id);
+            })->count();
+            $jawabanBenar = Answer::where('user_id', $auth->id)->where('nilai', 'Benar')->whereHas('quiz', function($query) use ($id) {
+                $query->where('course_id', $id);
+            })->count();
+            if($jawabanBenar === 0 || $totalJawaban === 0) {
+                $nilai = 0; 
+            }else {
+                $nilai = ($totalJawaban / $jawabanBenar) * 100; 
+            }
+            // For Nilai
+    
+            return view('course', compact('course', 'type_course', 'tanggal_lahir', 'materies', 'quizzes', 'follow', 'review', 'rating', 'progress', 'nilai', 'jawabanBenar', 'totalJawaban'));
+      
+        }else {
+            return view('course', compact('course', 'type_course', 'materies', 'quizzes', 'review', 'rating'));
+     
+        }
 
-        $progressPercentage = $totalQuiz > 0 ? ($completedQuiz / $totalQuiz) * 100 : 0;
-        $progress = floor($progressPercentage);
-        // For Progress
-
-        return view('course', compact('course', 'type_course', 'tanggal_lahir', 'materies', 'quizzes', 'follow', 'review', 'rating', 'progress'));
     }
 
     public function quiz($id) {

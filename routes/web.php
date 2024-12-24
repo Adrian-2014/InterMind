@@ -22,11 +22,11 @@ Route::get('/filter/{id}', [userControll::class, 'filter']);
 
 
 // Authentication
-Route::post('register-user', [authControll::class, 'daftarUser']);
-Route::post('register-guru', [authControll::class, 'daftarGuru']);
+Route::post('/register-user', [authControll::class, 'daftarUser']);
+Route::post('/register-guru', [authControll::class, 'daftarGuru']);
 
-Route::post('login-user', [authControll::class, 'loginUser']);
-Route::post('login-guru', [authControll::class, 'loginGuru']);
+Route::post('/login-user', [authControll::class, 'loginUser']);
+Route::post('/login-guru', [authControll::class, 'loginGuru']);
 
 Route::post('/logout', [authControll::class, 'logout']);
 // Authentication
@@ -54,6 +54,10 @@ Route::post('/follow-course', [FollowCourseController::class, 'follow']);
 Route::post('/cancel-follow-course', [FollowCourseController::class, 'cancel']);
 Route::post('/post-ulasan', [UlasanController::class, 'post']);
 
+Route::get('/profil', [userControll::class, 'profil']);
+
+
+
 // USER
 
 
@@ -61,8 +65,18 @@ Route::post('/post-ulasan', [UlasanController::class, 'post']);
 // TEACHER
 
 Route::get('/guru-index', [TeacherController::class, 'index'])->name('guru');
+Route::get('/guru-rating', [TeacherController::class, 'rating']);
 
 Route::post('/upload', [TeacherController::class, 'upload'])->name('upload');
+
+// Editz
+Route::post('/guru-editprofil_name', [TeacherController::class, 'editName']);
+Route::post('/guru-editprofil_email', [TeacherController::class, 'editEmail']);
+Route::post('/guru-editprofil_notelp', [TeacherController::class, 'editNotelp']);
+Route::post('/guru-editprofil_tl', [TeacherController::class, 'editTl']);
+Route::post('/guru-editprofil_jk', [TeacherController::class, 'editJk']);
+Route::post('/guru-editprofil_profil', [TeacherController::class, 'editProfil']);
+// Editz
 
 // Course
 Route::get('/guru-course', [TeacherController::class, 'course']);

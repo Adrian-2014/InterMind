@@ -1112,7 +1112,12 @@ footer {
             }
 
             .dropdown-menu {
+                width: 10rem;
+                padding: 0 !important;
+                overflow: hidden;
                 li {
+                    transition: 0.25s ease;
+                    padding: 0.35rem 0.15rem;
                     form {
                         button {
                             display: flex;
@@ -1130,6 +1135,31 @@ footer {
                             }
                         }
                     }
+
+                    .link {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.7rem;
+                        background: transparent;
+                        border: none;
+                        padding: 0 0.75rem;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        color: var(--midnight);
+
+                        text-decoration: none;
+                        .txt {
+                            text-decoration: none;
+                        }
+
+                        i {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+
+                li:hover {
+                    background-color: rgba(0, 175, 191, 0.25) !important;
                 }
             }
         }

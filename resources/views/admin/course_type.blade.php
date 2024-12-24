@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Deskripsi</label>
-                                <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="450"></textarea>
+                                <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="370"></textarea>
                             </div>
                             <div class="col-12
                                     upload">
@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Deskripsi</label>
-                                    <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="450">{{ $modal->deskripsi }}</textarea>
+                                    <textarea name="deskripsi" placeholder="Berikan deskripsi singkat tentang tipe ini.." maxlength="370">{{ $modal->deskripsi }}</textarea>
                                 </div>
                                 <div class="col-12
                                     upload">

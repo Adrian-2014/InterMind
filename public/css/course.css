@@ -18,6 +18,30 @@ body {
     background-color: rgb(247, 246, 246);
 }
 
+.navbar {
+    .login-btn {
+        display: flex;
+        align-items: center;
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        line-height: 1.1;
+
+        background: linear-gradient(
+            to bottom right,
+            var(--sky),
+            rgb(16, 108, 117)
+        ) !important;
+        background-clip: text !important;
+        color: transparent !important;
+        border: 2px solid var(--sky) !important;
+    }
+    .login-btn::after {
+        display: none;
+    }
+}
+
 .course {
     .course-contain {
         display: flex;
@@ -76,157 +100,224 @@ body {
                 flex-direction: column;
                 justify-content: space-between;
 
-                .for-name {
-                    font-size: 1.7rem;
-                    font-weight: 600;
-                    line-height: 1.15;
-                    color: rgba(44, 62, 80, 0.9);
-                }
-
-                .for-deskripsi {
-                    margin-top: 0.5rem;
-                    font-size: 1rem;
-                    line-height: 1.2;
-                    width: 98%;
-                    color: rgba(44, 62, 80, 0.8);
-                }
-
-                .for-made {
-                    margin-top: 1rem;
+                .top {
                     display: flex;
                     flex-direction: column;
-                    gap: 0.15rem;
 
-                    .txt {
-                        font-size: 0.95rem;
-                        line-height: 1.2;
-                        color: rgba(44, 62, 80, 0.7);
-                    }
-
-                    .value {
-                        font-size: 1rem;
-                        line-height: 1.2;
-
-                        .t-name {
-                            color: rgba(44, 62, 80, 0.8);
-                            font-weight: 500;
-                        }
-                        .t-email {
-                            font-style: italic;
-                            color: rgba(44, 62, 80, 0.7);
-                        }
-                    }
-                }
-
-                .for-type {
-                    margin-top: 0.5rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.15rem;
-
-                    .txt {
-                        font-size: 0.95rem;
-                        line-height: 1.2;
-                        color: rgba(44, 62, 80, 0.7);
-                    }
-
-                    .value {
-                        font-size: 1rem;
-                        line-height: 1.2;
-
-                        color: rgba(44, 62, 80, 0.8);
-                        font-weight: 500;
-                    }
-                }
-                .for-rating {
-                    margin-top: 0.5rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.15rem;
-
-                    .txt {
-                        font-size: 1rem;
-                        line-height: 1.2;
-                        color: rgba(44, 62, 80, 0.7);
-                    }
-
-                    .value {
-                        line-height: 1.2;
-                        display: flex;
-                        align-items: center;
-                        gap: 1.2rem;
-
-                        .stars {
-                            font-size: 1.2rem;
-                            display: flex;
-                            align-items: center;
-                            gap: 0.15rem;
-                            .bi-star-fill {
-                                color: gold;
-                            }
-                            .bi-star {
-                                color: rgba(43, 61, 79, 0.6);
-                            }
+                    .top-tops {
+                        .for-name {
+                            font-size: 1.7rem;
+                            font-weight: 600;
+                            line-height: 1.15;
+                            color: rgba(44, 62, 80, 0.9);
                         }
 
-                        .users {
-                            font-size: 0.95rem;
+                        .for-deskripsi {
+                            margin-top: 0.5rem;
+                            font-size: 1rem;
+                            line-height: 1.2;
+                            width: 98%;
                             color: rgba(44, 62, 80, 0.8);
                         }
                     }
                 }
-
-                .wrap {
+                .top-bots {
                     display: flex;
+                    justify-content: space-between !important;
                     align-items: center;
-                    gap: 1.5rem;
-                    margin-top: 1rem;
-
-                    .for-follow {
-                        .follow {
+                    .fors {
+                        display: flex;
+                        flex-direction: column;
+                        .for-made {
+                            margin-top: 1rem;
                             display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                            line-height: 1.2;
-                            padding: 0.75rem 2rem;
-                            border-radius: 0.35rem;
+                            flex-direction: column;
+                            gap: 0.15rem;
 
-                            border: none;
-                            background: var(--sky);
-                            transition: 0.25s ease;
-                            .text {
-                                color: white;
+                            .txt {
                                 font-size: 0.95rem;
-                                text-transform: uppercase;
-                                font-weight: 600;
+                                line-height: 1.2;
+                                color: rgba(44, 62, 80, 0.7);
+                            }
+
+                            .value {
+                                font-size: 1rem;
+                                line-height: 1.2;
+
+                                .t-name {
+                                    color: rgba(44, 62, 80, 0.8);
+                                    font-weight: 500;
+                                }
+                                .t-email {
+                                    font-style: italic;
+                                    color: rgba(44, 62, 80, 0.7);
+                                }
                             }
                         }
 
-                        .follow:hover {
-                            background: #0039c8;
-                        }
-
-                        .cancel-follow {
+                        .for-type {
+                            margin-top: 0.5rem;
                             display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                            line-height: 1.2;
-                            padding: 0.75rem 2rem;
-                            border-radius: 0.35rem;
+                            flex-direction: column;
+                            gap: 0.15rem;
 
-                            border: none;
-                            background: rgba(255, 0, 0, 0.75);
-                            transition: 0.25s ease;
-                            .text {
-                                color: white;
+                            .txt {
                                 font-size: 0.95rem;
-                                text-transform: uppercase;
-                                font-weight: 600;
+                                line-height: 1.2;
+                                color: rgba(44, 62, 80, 0.7);
+                            }
+
+                            .value {
+                                font-size: 1rem;
+                                line-height: 1.2;
+
+                                color: rgba(44, 62, 80, 0.8);
+                                font-weight: 500;
+                            }
+                        }
+                        .for-rating {
+                            margin-top: 0.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.15rem;
+
+                            .txt {
+                                font-size: 1rem;
+                                line-height: 1.2;
+                                color: rgba(44, 62, 80, 0.7);
+                            }
+
+                            .value {
+                                line-height: 1.2;
+                                display: flex;
+                                align-items: center;
+                                gap: 1.2rem;
+
+                                .stars {
+                                    font-size: 1.2rem;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.15rem;
+                                    .active {
+                                        color: gold !important;
+                                    }
+                                    .bi-star-fill {
+                                        color: rgba(43, 61, 79, 0.3);
+                                    }
+                                }
+
+                                .users {
+                                    font-size: 0.95rem;
+                                    color: rgba(44, 62, 80, 0.8);
+                                }
                             }
                         }
 
-                        .cancel-follow:hover {
-                            background: rgba(255, 0, 0, 1);
+                        .wrap {
+                            display: flex;
+                            align-items: center;
+                            gap: 1.5rem;
+                            margin-top: 1rem;
+
+                            .for-follow {
+                                .follow {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.5rem;
+                                    line-height: 1.2;
+                                    padding: 0.75rem 2rem;
+                                    border-radius: 0.35rem;
+
+                                    border: none;
+                                    background: var(--sky);
+                                    transition: 0.25s ease;
+                                    .text {
+                                        color: white;
+                                        font-size: 0.95rem;
+                                        text-transform: uppercase;
+                                        font-weight: 600;
+                                    }
+                                }
+
+                                .follow:hover {
+                                    background: #0039c8;
+                                }
+
+                                .cancel-follow {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.5rem;
+                                    line-height: 1.2;
+                                    padding: 0.75rem 2rem;
+                                    border-radius: 0.35rem;
+
+                                    border: none;
+                                    background: rgba(255, 0, 0, 0.75);
+                                    transition: 0.25s ease;
+                                    .text {
+                                        color: white;
+                                        font-size: 0.95rem;
+                                        text-transform: uppercase;
+                                        font-weight: 600;
+                                    }
+                                }
+
+                                .cancel-follow:hover {
+                                    background: rgba(255, 0, 0, 1);
+                                }
+                            }
+                        }
+                    }
+
+                    .nilai {
+                        width: 35vh;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.5rem;
+
+                        .box-nilai {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            height: 8rem;
+                            width: 8rem;
+                            border-radius: 50%;
+                            overflow: hidden;
+
+                            .main-value {
+                                justify-self: center;
+                                font-weight: 800;
+                                font-size: 3.2rem;
+                                line-height: 1.1;
+                            }
+
+                            .detail {
+                                line-height: 1;
+                                font-size: 0.85rem;
+                                color: var(--midnight);
+                                text-align: center;
+
+                                span {
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+
+                        .quote {
+                            font-size: 0.85rem;
+                            line-height: 1.1;
+                            text-align: center;
+                        }
+                    }
+                    .low {
+                        .box-nilai {
+                            border: 4px solid red;
+
+                            .main-value {
+                                color: red;
+                            }
                         }
                     }
                 }
@@ -631,7 +722,7 @@ body {
 }
 
 /* For Modal */
-.modal {
+.tambah-ulasan {
     .modal-dialog {
         .modal-content {
             width: 85% !important;

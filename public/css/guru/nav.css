@@ -41,7 +41,7 @@
     }
 }
 
-.modal.show {
+.modal {
     .modal-dialog {
         .modal-content {
             border-radius: 1rem;
@@ -476,7 +476,7 @@
                     align-items: center;
                     justify-content: center;
                     border-radius: 50%;
-                    background-color: var(--midnight);
+                    background-color: #2c3e50;
                     color: white;
                 }
             }
@@ -628,4 +628,19 @@
 input:focus {
     box-shadow: none !important;
     border-color: rgb(219, 219, 219) !important;
+}
+
+.for-profil-nav {
+    cursor: pointer;
+    height: 2.7rem;
+    width: 2.7rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+        object-position: top left;
+    }
 }

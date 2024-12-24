@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class userSeed extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        User::insert([
             [
                 'name' => 'Adrian Kurniawan',
                 'email' => 'iansantay199@gmail.com',

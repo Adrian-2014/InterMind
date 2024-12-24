@@ -194,7 +194,7 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('Uploads/for-quiz' . $answer->quiz->gambar) }}">
+                    <img src="{{ asset('Uploads/for-quiz/' . $answer->quiz->gambar) }}">
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
 
 {{-- for navbar --}}
 @section('home', '/')
-@section('about', '#about-link')
+@section('about', '/#about-link')
 {{-- for navbar --}}
 
 @section('content')
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="rows" id="courseRows">
-            @foreach ($courseList as $course)
+            @forelse ($courseList as $course)
                 <div class="item" data-title="{{ strtolower($course->name) }}"
                     data-description="{{ strtolower($course->deskripsi) }}">
                     <div class="course-type">
@@ -88,7 +88,22 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="blanks">
+                    <div class="img-blank">
+                        <img src="{{ asset('property-img/nothing.png') }}">
+                    </div>
+                    <div class="txt-result">
+                        <div class="title">
+                            Whoops!
+                        </div>
+                        <div class="result">
+
+                            Tidak ada Course dengan tipe {{ $typeTarget->name_type }} saat ini!
+                        </div>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </section>
 

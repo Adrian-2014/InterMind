@@ -346,7 +346,6 @@
         </div>
     </div>
 @endif
-
 {{-- EDITZ --}}
 
 
@@ -380,7 +379,7 @@
             <div class="modal-body">
                 <div class="fucking-form">
                     <div class="formulir for-pelajar active" id="formulir-pelajar">
-                        <form action="login-user" method="POST">
+                        <form action="/login-user" method="POST">
                             @csrf
                             <div class="text">
                                 Login Sebagai Pelajar
@@ -429,7 +428,7 @@
                         </form>
                     </div>
                     <div class="formulir for-guru" id="formulir-guru">
-                        <form action="login-guru" method="POST">
+                        <form action="/login-guru" method="POST">
                             @csrf
                             <div class="text">
                                 Login Sebagai Guru
@@ -514,7 +513,7 @@
             </div>
             <div class="modal-body">
                 <div class="formulir for-pelajar active" id="form-pelajar">
-                    <form action="register-user" method="post">
+                    <form action="/register-user" method="post">
                         @csrf
                         <div class="text">
                             Daftar sebagai Pelajar
@@ -621,7 +620,7 @@
                     </form>
                 </div>
                 <div class="formulir for-guru" id="form-guru">
-                    <form action="register-guru" method="post">
+                    <form action="/register-guru" method="post">
                         @csrf
                         <div class="text">
                             Daftar sebagai Guru
@@ -745,6 +744,14 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
+                        <a href="/profil" class="link">
+                            <i class="bi bi-bookmark-heart"></i>
+                            <div class="txt">
+                                Course Kamu
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <form action="/logout" method="post">
                             @csrf
                             <button type="submit">
@@ -755,6 +762,7 @@
                             </button>
                         </form>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -867,6 +875,19 @@
                             </div>
                             <div class="act" data-bs-target="#edit-jk" data-bs-toggle="modal">
                                 <i class="bi bi-pencil-square"></i>
+                            </div>
+                        </div>
+                        <div class="for-sep">
+                            <i class="bi bi-link-45deg"></i>
+                        </div>
+                    </div>
+                    <div class="list">
+                        <div class="label">
+                            Tanggal Bergabung
+                        </div>
+                        <div class="isi">
+                            <div class="isis">
+                                {{ \Carbon\Carbon::parse(Auth::guard('web')->user()->created_at)->translatedFormat('j F Y') }}
                             </div>
                         </div>
                         <div class="for-sep">

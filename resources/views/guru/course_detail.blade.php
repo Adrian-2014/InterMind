@@ -17,6 +17,7 @@
     </ul>
 @endsection
 @section('sub-stat', 'open')
+@section('id', $course->id)
 
 @section('content')
 

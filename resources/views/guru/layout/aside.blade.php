@@ -18,7 +18,7 @@
             </a>
         </li>
 
-        <li class="menu-item @yield('sub-stat') @if (Request::is('guru-course') || Request::is('guru-course_detail')) active @endif">
+        <li class="menu-item @yield('sub-stat') @if (Request::is('guru-course') || Request::is('guru-course_detail*')) active @endif">
             <a href="/guru-course" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Course</div>
@@ -29,15 +29,20 @@
         </li>
 
 
-        <li class="menu-item @yield('sub-act') @if (Request::is('guru-answer_request') || Request::is('guru-answer_verivication')) active @endif">
+        <li class="menu-item @yield('sub-act') @if (Request::is('guru-answer_request') || Request::is('guru-answer_verification*')) active @endif">
             <a href="/guru-answer_request" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bulb"></i>
 
                 <div data-i18n="Basic">Quiz</div>
             </a>
-
             @yield('sub-quiz')
+        </li>
 
+        <li class="menu-item {{ Request::is('guru-rating') ? 'active' : '' }}">
+            <a href="/guru-rating" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-message-alt-dots'></i>
+                <div data-i18n="Analytics">Rating & Ulasan</div>
+            </a>
         </li>
 
     </ul>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Teacher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class teacherSeed extends Seeder
      */
     public function run(): void
     {
-        DB::table('teachers')->insert([
+        Teacher::insert([
             [
                 'name' => 'Kipp Thorne',
                 'email' => 'kipp2014@gmail.com',
@@ -37,7 +38,7 @@ class teacherSeed extends Seeder
                 'no_telepon' => '083457213390',
                 'tanggal_lahir' => \DateTime::createFromFormat('d/m/Y', '28/09/1880')->format('Y-m-d'),
                 'jenis_kelamin' => 'Laki-Laki',
-                'password' => Hash::make('\albert11'),
+                'password' => Hash::make('albert11'),
             ],
         ]);
     }

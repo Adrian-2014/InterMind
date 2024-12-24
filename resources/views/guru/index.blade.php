@@ -37,12 +37,12 @@
                                             <div class="wrap">
                                                 <div class="for-text">
                                                     <div class="welcome-text">
-                                                        Selamat Datang, Adrian! 🎉
+                                                        Selamat Datang, {{ Auth::guard('teacher')->user()->name }}! 🎉
                                                     </div>
                                                     <div class="moto-text">
                                                         Buat lebih banyak Courses dan perluas cakrawala pengetahuan!
                                                     </div>
-                                                    <a href="/guru-courses" class="to-course">
+                                                    <a href="/guru-course" class="to-course">
                                                         Buat Course
                                                     </a>
                                                 </div>
@@ -58,7 +58,7 @@
                                         <div class="col-12 user">
                                             <div class="wrap">
                                                 <div class="title">
-                                                    <i class="bi bi-person-circle"></i> USER TERATAS
+                                                    <i class="bi bi-person-circle"></i> DAFTAR PELAJAR
                                                 </div>
                                                 <div class="tables">
                                                     <div class="table-head">
@@ -71,59 +71,70 @@
                                                         <div class="head progres">
                                                             Progress
                                                         </div>
-                                                        <div class="head rating">
-                                                            Rating
-                                                        </div>
                                                         <div class="head join-date">
                                                             Join Date
                                                         </div>
                                                     </div>
                                                     <div class="table-body">
+                                                        @foreach ($course as $lists)
+                                                            @foreach ($lists->user as $user)
+                                                                @php
+                                                                    $follower = \App\Models\Follow_course::where(
+                                                                        'user_id',
+                                                                        $user->id,
+                                                                    )
+                                                                        ->where('course_id', $lists->id)
+                                                                        ->first();
 
-                                                        @for ($i = 0; $i < 10; $i++)
-                                                            <div class="list">
-                                                                <div class="body courses-name">
-                                                                    Latihan Bahasa Arab Lancar
-                                                                </div>
-                                                                <div class="body user-name">
-                                                                    <div class="for-pp">
-                                                                        <img src="{{ asset('property-img/profile.jpg') }}">
+                                                                    $totalQuiz = \App\Models\Quiz::where(
+                                                                        'course_id',
+                                                                        $lists->id,
+                                                                    )->count();
+                                                                    $completedQuiz = \App\Models\Answer::whereHas(
+                                                                        'quiz',
+                                                                        function ($query) use ($lists) {
+                                                                            $query->where('course_id', $lists->id);
+                                                                        },
+                                                                    )
+                                                                        ->where('user_id', $user->id)
+                                                                        ->count();
+
+                                                                    $progressPercentage =
+                                                                        $totalQuiz > 0
+                                                                            ? ($completedQuiz / $totalQuiz) * 100
+                                                                            : 0;
+                                                                    $progress = floor($progressPercentage);
+                                                                @endphp
+                                                                <div class="list">
+                                                                    <div class="body courses-name">
+                                                                        {{ $lists->name }}
                                                                     </div>
-                                                                    <div class="for-name">
-                                                                        Vinsensius Ferrer Agung
-                                                                    </div>
-                                                                </div>
-                                                                <div class="body progres">
-                                                                    <div class="progress" aria-valuemin="0"
-                                                                        aria-valuemax="100">
-                                                                        <div class="progress-bar" style="width: 70%;">
+                                                                    <div class="body user-name">
+                                                                        <div class="for-pp">
+                                                                            <img
+                                                                                src="{{ asset('property-img/profile.jpg') }}">
+                                                                        </div>
+                                                                        <div class="for-name">
+                                                                            {{ $user->name }}
                                                                         </div>
                                                                     </div>
-                                                                    <div class="txt">
-                                                                        100%
+                                                                    <div class="body progres">
+                                                                        <div class="progress" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                            <div class="progress-bar"
+                                                                                style="width: {{ $progress }}%;">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="txt">
+                                                                            {{ $progress }}%
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="body join-date">
+                                                                        {{ \Carbon\Carbon::parse($follower->created_at)->translatedFormat('j F Y') }}
                                                                     </div>
                                                                 </div>
-                                                                <div class="body rating">
-                                                                    <i class="bi bi-star-fill"></i>
-                                                                    <i class="bi bi-star-fill"></i>
-                                                                    <i class="bi bi-star-fill"></i>
-                                                                    <i class="bi bi-star-fill"></i>
-                                                                    <i class="bi bi-star-fill"></i>
-                                                                </div>
-                                                                <div class="body join-date">
-                                                                    88 NOVEMBER 2024
-                                                                </div>
-                                                                <div class="body dots dropstart">
-                                                                    <button type="button" class="dropdown-toggle"
-                                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <i class="bi bi-three-dots-vertical"></i>
-                                                                    </button>
-                                                                    <div class="dropdown-menu">
-                                                                        Lihat Rincian
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endfor
+                                                            @endforeach
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,26 +151,25 @@
                                                     <div
                                                         class="card-title d-flex align-items-start justify-content-between">
                                                         <div class="avatar chart">
-                                                            <i class='bx bx-line-chart'></i>
+                                                            <i class="bi bi-question-circle"></i>
                                                         </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn p-0" type="button" id="cardOpt3"
-                                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end"
-                                                                aria-labelledby="cardOpt3">
-                                                                <a class="dropdown-item" href="javascript:void(0);">View
-                                                                    More</a>
-                                                                <a class="dropdown-item"
-                                                                    href="javascript:void(0);">Delete</a>
-                                                            </div>
-                                                        </div>
+
                                                     </div>
-                                                    <span class="name">Pengunjung</span>
-                                                    <h3 class="valuation">25</h3>
-                                                    <small class="year">2022 <span class="fw-light">-</span> 2024</small>
+                                                    <span class="name">Quiz</span>
+                                                    <h3 class="valuation">{{ $QuizCount }}</h3>
+                                                    <small class="year">
+                                                        @if (!$lastQuiz || !$firstQuiz)
+                                                            -
+                                                        @elseif (
+                                                            \Carbon\Carbon::parse($lastQuiz->created_at)->translatedFormat('Y') ===
+                                                                \Carbon\Carbon::parse($firstQuiz->created_at)->translatedFormat('Y'))
+                                                            {{ \Carbon\Carbon::parse($lastQuiz->created_at)->translatedFormat('Y') }}
+                                                        @else
+                                                            {{ \Carbon\Carbon::parse($firstQuiz->created_at)->translatedFormat('Y') }}
+                                                            <span class="fw-light">-</span>
+                                                            {{ \Carbon\Carbon::parse($lastQuiz->created_at)->translatedFormat('Y') }}
+                                                        @endif
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,25 +181,22 @@
                                                         <div class="avatar bookmark">
                                                             <i class='bx bx-bookmark-heart'></i>
                                                         </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn p-0" type="button" id="cardOpt6"
-                                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end"
-                                                                aria-labelledby="cardOpt6">
-                                                                <a class="dropdown-item" href="javascript:void(0);">View
-                                                                    More</a>
-                                                                <a class="dropdown-item"
-                                                                    href="javascript:void(0);">Delete</a>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                    <span class="name">Bookmark</span>
-                                                    <h3 class="valuation">12</h3>
-                                                    <small class="year">2022 <span class="fw-light">-</span>
-                                                        2024</small>
+                                                    <span class="name">Pengikut</span>
+                                                    <h3 class="valuation">{{ $followersCount }}</h3>
+                                                    <small class="year">
+                                                        @if (!$lastFollower || !$firstFollower)
+                                                            -
+                                                        @elseif (
+                                                            \Carbon\Carbon::parse($lastFollower->created_at)->translatedFormat('Y') ===
+                                                                \Carbon\Carbon::parse($firstFollower->created_at)->translatedFormat('Y'))
+                                                            {{ \Carbon\Carbon::parse($lastFollower->created_at)->translatedFormat('Y') }}
+                                                        @else
+                                                            {{ \Carbon\Carbon::parse($firstFollower->created_at)->translatedFormat('Y') }}
+                                                            <span class="fw-light">-</span>
+                                                            {{ \Carbon\Carbon::parse($lastFollower->created_at)->translatedFormat('Y') }}
+                                                        @endif
+                                                    </small>
 
                                                 </div>
                                             </div>
@@ -202,25 +209,22 @@
                                                         <div class="avatar courses">
                                                             <i class='bx bx-collection'></i>
                                                         </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn p-0" type="button" id="cardOpt4"
-                                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end"
-                                                                aria-labelledby="cardOpt4">
-                                                                <a class="dropdown-item" href="javascript:void(0);">View
-                                                                    More</a>
-                                                                <a class="dropdown-item"
-                                                                    href="javascript:void(0);">Delete</a>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <span class="name">Courses</span>
-                                                    <h3 class="valuation">15</h3>
-                                                    <small class="year">2022 <span class="fw-light">-</span>
-                                                        2024</small>
+                                                    <h3 class="valuation">{{ $courseCount }}</h3>
+                                                    <small class="year">
+                                                        @if (!$lastCourse || !$firstCourse)
+                                                            -
+                                                        @elseif (
+                                                            \Carbon\Carbon::parse($lastCourse->created_at)->translatedFormat('Y') ===
+                                                                \Carbon\Carbon::parse($firstCourse->created_at)->translatedFormat('Y'))
+                                                            {{ \Carbon\Carbon::parse($lastCourse->created_at)->translatedFormat('Y') }}
+                                                        @else
+                                                            {{ \Carbon\Carbon::parse($firstCourse->created_at)->translatedFormat('Y') }}
+                                                            <span class="fw-light">-</span>
+                                                            {{ \Carbon\Carbon::parse($lastCourse->created_at)->translatedFormat('Y') }}
+                                                        @endif
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -230,34 +234,31 @@
                                                     <div
                                                         class="card-title d-flex align-items-start justify-content-between">
                                                         <div class="avatar kategori">
-                                                            <i class='bx bx-category'></i>
-                                                        </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn p-0" type="button" id="cardOpt1"
-                                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                                <a class="dropdown-item" href="javascript:void(0);">View
-                                                                    More</a>
-                                                                <a class="dropdown-item"
-                                                                    href="javascript:void(0);">Delete</a>
-                                                            </div>
+                                                            <i class="bi bi-folder2-open"></i>
                                                         </div>
                                                     </div>
-                                                    <span class="name">Kategori</span>
-                                                    <h3 class="valuation">2</h3>
-                                                    <small class="year">2022 <span class="fw-light">-</span>
-                                                        2024</small>
-
+                                                    <span class="name">Materi</span>
+                                                    <h3 class="valuation">{{ $MateriCount }}</h3>
+                                                    <small class="year">
+                                                        @if (!$lastMateri || !$firstMateri)
+                                                            -
+                                                        @elseif (
+                                                            \Carbon\Carbon::parse($lastMateri->created_at)->translatedFormat('Y') ===
+                                                                \Carbon\Carbon::parse($firstMateri->created_at)->translatedFormat('Y'))
+                                                            {{ \Carbon\Carbon::parse($lastMateri->created_at)->translatedFormat('Y') }}
+                                                        @else
+                                                            {{ \Carbon\Carbon::parse($firstMateri->created_at)->translatedFormat('Y') }}
+                                                            <span class="fw-light">-</span>
+                                                            {{ \Carbon\Carbon::parse($lastMateri->created_at)->translatedFormat('Y') }}
+                                                        @endif
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="calendar calendar-first" id="calendar_first">
-                                                <div class="for-info dropstart">
+                                                {{-- <div class="for-info dropstart">
                                                     <div class="dropdown-toggle" data-bs-toggle="dropdown">
                                                         <i class="bi bi-info-circle"></i>
                                                     </div>
@@ -327,7 +328,7 @@
                                                             </div>
                                                         </li>
                                                     </ul>
-                                                </div>
+                                                </div> --}}
                                                 <div class="calendar_header">
                                                     <button class="switch-month switch-left">
                                                         <i class="bi bi-chevron-compact-left"></i>
@@ -370,41 +371,6 @@
     <script src="{{ asset('ext-comp/calendar') }}/js/popper.js"></script>
     <script src="{{ asset('ext-comp/calendar') }}/js/bootstrap.min.js"></script>
     <script src="{{ asset('ext-comp/calendar') }}/js/main.js"></script>
-
-    {{-- foreach ( as ) --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var bikinCourse = "3";
-            var bikinMateri = "12";
-            var bikinKuis = "3";
-
-            setTimeout(function() {
-                document.querySelectorAll(".date").forEach((date) => {
-                    var dateValue = date.innerHTML.trim();
-
-                    if (dateValue == bikinCourse && dateValue == bikinMateri && dateValue ==
-                        bikinKuis) {
-                        date.classList.add("all-active"); // Prioritas 1
-
-                    } else if (dateValue == bikinCourse && dateValue == bikinMateri) {
-                        date.classList.add("cm-active"); // Prioritas 2
-                    } else if (dateValue == bikinCourse && dateValue == bikinKuis) {
-                        date.classList.add("ck-active"); // Prioritas 2
-                    } else if (dateValue == bikinMateri && dateValue == bikinKuis) {
-                        date.classList.add("mk-active"); // Prioritas 2
-
-                    } else if (dateValue == bikinCourse) {
-                        date.classList.add("course-active"); // Prioritas 3
-                    } else if (dateValue == bikinMateri) {
-                        date.classList.add("materi-active"); // Prioritas 3
-                    } else if (dateValue == bikinKuis) {
-                        date.classList.add("kuis-active"); // Prioritas 3
-                    }
-                });
-            }, 100);
-        });
-    </script>
-    {{-- endforeach --}}
 
 
     @if (session('success'))
