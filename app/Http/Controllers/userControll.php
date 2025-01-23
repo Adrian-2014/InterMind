@@ -23,7 +23,7 @@ class userControll extends Controller
         $type_course = Type_course::get();
         // For Navbar
         
-        $courseList = Course::inRandomOrder()->get();
+        $courseList = Course::limit(24)->inRandomOrder()->get();
         $ulasans = Ulasan::limit(15)->inRandomOrder()->get();
        
 

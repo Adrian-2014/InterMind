@@ -118,11 +118,11 @@
 
                                 <div class="secret">
                                     <div class="publisher">
-                                        <span>Published by: </span>
+                                        <span>Dibuat oleh: </span>
                                         {{ $course->teacher->name }}
                                     </div>
                                     <div class="tahun">
-                                        {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('Y') }}
+                                        {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('F Y') }}
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,6 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
     </section>
 

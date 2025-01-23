@@ -49,10 +49,10 @@
                                             </div>
                                             <div class="for-detail">
                                                 <div class="name">
-                                                    {{ Str::limit($item->name, 30, '...') }}
+                                                    {{ Str::limit($item->name, 25, '...') }}
                                                 </div>
                                                 <div class="desc">
-                                                    {{ Str::limit($item->deskripsi, 70, '...') }}
+                                                    {{ Str::limit($item->deskripsi, 60, '...') }}
                                                 </div>
                                             </div>
 

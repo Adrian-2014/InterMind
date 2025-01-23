@@ -51,7 +51,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <form action="/guru-logout" method="post">
+                        <form action="/logout" method="post">
                             @csrf
                             <button type="submit">
                                 <i class="bi bi-power"></i>

@@ -163,6 +163,10 @@
             gap: 0.5rem;
             width: 21.5rem;
 
+            animation: appear ease-in-out;
+            animation-timeline: view();
+            animation-range: entry 0;
+
             .course-type {
                 padding: 0.2rem 0.75rem;
                 font-size: 1.2rem;
@@ -350,3 +354,14 @@
     }
 }
 /* For Alert */
+
+@keyframes appear {
+    from {
+        opacity: 0.25;
+        scale: 0.35;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}

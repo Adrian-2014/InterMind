@@ -88,9 +88,21 @@ class TeacherController extends Controller
     public function answer() {
 
         $teacherId = Auth::guard('teacher')->user()->id;
+
+        $answers = Answer::whereHas('quiz', function($query) use ($teacherId) {
+            $query->whereHas('course', function($subQuery) use ($teacherId) {
+                $subQuery->where('teacher_id', $teacherId);
+            });
+
+        })->where('status', 'Proses Validasi')->orderBy('created_at', 'DESC')->get();
+        $answerCount = Answer::whereHas('quiz', function($query) use ($teacherId) {
+            $query->whereHas('course', function($subQuery) use ($teacherId) {
+                $subQuery->where('teacher_id', $teacherId);
+            });
+        })->where('status', 'Proses Validasi')->count();
         
         $course = Course::where('teacher_id', $teacherId)->get();
-        return view('guru.answer-request', compact('course'));
+        return view('guru.answer-request', compact('course', 'answers', 'answerCount'));
     }
 
     public function answerVerification($id) {

@@ -28,7 +28,7 @@
                                         QUIZ KAMU
                                     </div>
                                     <div class="subtitle">
-                                        21 Permmintaan verivikasi jawaban
+                                        {{ $answerCount }} Permmintaan verivikasi jawaban
                                     </div>
                                 </div>
 
@@ -50,47 +50,41 @@
                                     </div>
 
                                     <div class="body">
-
-                                        @foreach ($course as $item)
-                                            @foreach ($item->quiz as $quiz)
-                                                @foreach ($quiz->answer as $answer)
-                                                    @if ($answer->status === 'Proses Validasi')
-                                                        <div class="body-loop">
-                                                            <div class="body-list course-quiz">
-                                                                <div class="for-img">
-                                                                    <img
-                                                                        src="{{ asset('Uploads/for-course/' . $item->gambar) }}">
-                                                                </div>
-                                                                <div class="for-detail">
-                                                                    <div class="quiz-name">
-                                                                        {{ $quiz->judul }}
-                                                                    </div>
-                                                                    <div class="course-name">
-                                                                        {{ $item->name }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="body-list user">
-                                                                <div class="name">
-                                                                    {{ $answer->user->name }}
-                                                                </div>
-                                                                <div class="email">
-                                                                    {{ $answer->user->email }}
-                                                                </div>
-                                                            </div>
-                                                            <div class="body-list tgl">
-                                                                {{ \Carbon\Carbon::parse($answer->created_at)->translatedFormat('j F Y') }}
-                                                            </div>
-                                                            <div class="body-list action">
-                                                                <a href="/guru-answer_verification/{{ $answer->id }}">
-                                                                    <i class="bi bi-grid"></i>
-                                                                </a>
-                                                            </div>
+                                        @foreach ($answers as $answer)
+                                            <div class="body-loop">
+                                                <div class="body-list course-quiz">
+                                                    <div class="for-img">
+                                                        <img
+                                                            src="{{ asset('Uploads/for-course/' . $answer->quiz->course->gambar) }}">
+                                                    </div>
+                                                    <div class="for-detail">
+                                                        <div class="quiz-name">
+                                                            {{ $answer->quiz->judul }}
                                                         </div>
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
+                                                        <div class="course-name">
+                                                            {{ $answer->quiz->course->name }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="body-list user">
+                                                    <div class="name">
+                                                        {{ $answer->user->name }}
+                                                    </div>
+                                                    <div class="email">
+                                                        {{ $answer->user->email }}
+                                                    </div>
+                                                </div>
+                                                <div class="body-list tgl">
+                                                    {{ \Carbon\Carbon::parse($answer->created_at)->translatedFormat('j F Y') }}
+                                                </div>
+                                                <div class="body-list action">
+                                                    <a href="/guru-answer_verification/{{ $answer->id }}">
+                                                        <i class="bi bi-grid"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         @endforeach
+
 
                                     </div>
                                 </div>

@@ -23,18 +23,23 @@ class CourseController extends Controller
         if($existName) {
             return redirect()->back()->with('error', 'Nama Course telah digunakan, pilih nama lain!');
         }else {
-            $imagePath = time(). '.'. $request->image->guessExtension();
-            $request->image->move(public_path('Uploads/for-course'), $imagePath);
 
-            $course = new Course();
-            $course->name = $request->name;
-            $course->type_id = $request->type_course;
-            $course->deskripsi = $request->deskripsi;
-            $course->teacher_id = Auth::guard('teacher')->user()->id;
-            $course->gambar = $imagePath;
-            $course->save();
-
-            return redirect()->back()->with('success', 'Course berhasil Ditambahkan!');
+            if(!$request->type_course) {
+                return redirect()->back()->with('error', 'Mohon lengkapi data sebelu mengirim!');
+            }else {
+                $imagePath = time(). '.'. $request->image->guessExtension();
+                $request->image->move(public_path('Uploads/for-course'), $imagePath);
+                
+                $course = new Course();
+                $course->name = $request->name;
+                $course->type_id = $request->type_course;
+                $course->deskripsi = $request->deskripsi;
+                $course->teacher_id = Auth::guard('teacher')->user()->id;
+                $course->gambar = $imagePath;
+                $course->save();
+                
+                return redirect()->back()->with('success', 'Course berhasil Ditambahkan!');
+            }
         }
     }
 

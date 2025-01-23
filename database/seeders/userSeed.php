@@ -25,12 +25,12 @@ class userSeed extends Seeder
                 'password' => Hash::make('ian199'),
             ],
             [
-                'name' => 'Thomas Shelby',
-                'email' => 'shelby1919@gmail.com',
+                'name' => 'Nizar Risqullah',
+                'email' => 'nizar_88gmail.com',
                 'no_telepon' => '08190038205',
-                'tanggal_lahir' => \DateTime::createFromFormat('d/m/Y', '07/05/1892')->format('Y-m-d'),
+                'tanggal_lahir' => \DateTime::createFromFormat('d/m/Y', '12/05/1962')->format('Y-m-d'),
                 'jenis_kelamin' => 'Laki-Laki',
-                'password' => Hash::make('shelby19'),
+                'password' => Hash::make('b00b5'),
             ],
         ]);
     }
